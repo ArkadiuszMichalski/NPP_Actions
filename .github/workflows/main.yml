@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   
-  check_commit:
+  filter_commit:
     runs-on: windows-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
         throw "Changed files on this commit require full build."
 
   windows:
-    needs: check_commit
+    needs: filter_commit
     runs-on: windows-latest
 
     steps:
@@ -27,7 +27,7 @@ jobs:
         echo "Hellow World"
 
   gcc:
-    needs: check_commit
+    needs: filter_commit
     runs-on: windows-latest
 
     steps:
