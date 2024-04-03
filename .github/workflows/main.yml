@@ -41,7 +41,7 @@ jobs:
             if (($files_modified.length -gt 0 -and $files_notmached.length -eq 0) -or $commit_message -match "\[force (xml|nowork)\]") {
                 if (@($files_modified | Where-Object {$_ -notmatch "\.($files_nowork)$"}).length -eq 0 -or $commit_message -match "\[force nowork\]") {
                     Write-Output "Changed files on this commit don't require any additional tasks.`n"
-                    Exit 0
+                    Exit 1
                 }
                 else {
                     Write-Output "XML validation mode`n"
