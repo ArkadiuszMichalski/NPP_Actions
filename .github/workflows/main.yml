@@ -27,9 +27,9 @@ jobs:
         #echo ${{ matrix.build_platform}}
         echo ${{ github.event.head_commit.message }}
         echo ${{ github.event.pull_request.title }}
-        $nnv:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
+        $env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
         Write-host $env:MESSAGE
-        dir $env:
+        dir env:
         $env:MESSAGE
         $arek = "test"
         echo ${{env.arek}}
