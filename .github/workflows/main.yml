@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   
-  xml_validation:
+  check_commit:
     runs-on: windows-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
         exit 1
 
   windows:
-    needs: xml_validation
+    needs: check_commit
     runs-on: windows-latest
 
     steps:
@@ -27,7 +27,7 @@ jobs:
         echo "Hellow World"
 
   gcc:
-    needs: xml_validation
+    needs: check_commit
     runs-on: windows-latest
 
     steps:
