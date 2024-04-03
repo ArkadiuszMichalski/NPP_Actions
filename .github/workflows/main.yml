@@ -13,7 +13,7 @@ jobs:
       with:
         fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
     - name: Start commit filtering
-      id: filter_commit
+      id: filter
       run: |
         $allowMaster = $true
         $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
@@ -78,7 +78,7 @@ jobs:
         #throw "Changed files on this commit require full build."
 
     outputs:
-      result: ${{ steps.filter_commit.outputs.result }}
+      result: ${{ steps.filter.outputs.result }}
 
   windows:
     needs: filter_commit
@@ -91,7 +91,7 @@ jobs:
     - name: Start widnow job
       run: |
         echo "Hellow World"
-        echo "${{ needs.filter_commit.outputs.result }}"
+        echo "${{ needs.filter_commit.outputs }}"
 
   gcc:
     needs: filter_commit
@@ -104,4 +104,4 @@ jobs:
     - name: Start XML validation
       run: |
         echo "Hellow World"
-        echo "${{ needs.filter_commit.outputs.result }}"
+        echo "${{ needs.filter_commit.outputs }}"
