@@ -23,20 +23,18 @@ jobs:
 
         if ($isPush){
           $files_modified = @(git diff --name-only HEAD^1 HEAD)
+          $commit_message = ${{ github.event.head_commit.message }}
         }
         else{
           $files_modified = git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
+          $commit_message = ${{ github.event.pull_request.title }}
         }  
         
         $files_notmached = @($files_modified | Where-Object {$_ -notmatch "\.(xml|$files_nowork)$|$folders_onejob"})
 
+        echo $commit_message
         echo $files_modified
         echo $files_notmached
-
-        $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
-        $isPull = !$isPush
-
-
 
         if ($allowMaster -or $isPush) {
 
