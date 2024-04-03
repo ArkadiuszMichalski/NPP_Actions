@@ -25,7 +25,7 @@ jobs:
         echo ${{ github.event.head_commit.message }}
         echo ${{ github.event.pull_request.title }}
         $MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
-        echo  $MESSAGE
+        echo  $env:MESSAGE
 
         
         echo ${{ toJson(github) }}
