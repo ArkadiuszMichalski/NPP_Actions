@@ -12,7 +12,7 @@ jobs:
       uses: actions/checkout@v4
     - name: Start XML validation
       run: |
-        $allowMaster = $true
+        $allowMaster = $false
         
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isPull = !$isPush
