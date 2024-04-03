@@ -32,6 +32,7 @@ jobs:
         if ($env:MESSAGE2 -eq "test"){
           echo "PRAWDA"
         }
+        echo $env:MESSAGE2
 
         echo $env:MESSAGE
         echo $env:MESSAGE2
