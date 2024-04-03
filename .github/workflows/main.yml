@@ -36,11 +36,34 @@ jobs:
         echo $files_modified
         echo $files_notmached
 
-        if ($allowMaster -or $isPush) {
+        if ($allowMaster -or $isPull) {
 
-
+            if (($files_modified.length -gt 0 -and $files_notmached.length -eq 0) -or $commit_message -match "\[force (xml|nowork)\]") {
+                if (@($files_modified | Where-Object {$_ -notmatch "\.($files_nowork)$"}).length -eq 0 -or $commit_message -match "\[force nowork\]") {
+                    Write-Output "Changed files on this commit don't require any additional tasks.`n"
+                    Exit 0
+                }
+                else {
+                    Write-Output "XML validation mode`n"
+                    if (@($files_modified | Where-Object {$_ -match $folders_onejob}).length -eq 0) {
+                        $env:Path = "$env:python_dir;$env:python_dir\Scripts;" + $env:Path
+                        python -m pip install requests rfc3987 pywin32 lxml
+                        python PowerEditor\Test\xmlValidator\validator_xml.py
+                        if ($LastExitCode -eq 0) {
+                            Write-Output "`nAll XML files are valid.`n"
+                            Exit 0
+                        }
+                        else {
+                            Write-Output "`nSome XML files are invalid.`n"
+                            $host.SetShouldExit($LastExitCode)
+                        }
+                    }
         
-
+                }
+            }
+            elseif ($commit_message -match "\[xml\]" -and $commit_message -notmatch "\[force compile\]") {
+                throw "Changed files on this commit require full build."
+            }
         }
         else{
           Write-Output "Run standard process without commit filtration"
