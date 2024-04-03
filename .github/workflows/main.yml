@@ -19,8 +19,8 @@ jobs:
 
     - name: ECHO
       env:
-        arek: "test2",
-        arek2: ${{ github.event.pull_request.title }}
+        arek: "test2"
+        arek2: ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
       run: |
         echo "Hellow World"
         echo ${{ matrix.build_configuration}}
