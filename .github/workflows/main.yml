@@ -9,8 +9,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        build_configuration: [Release, Debug]
-        build_platform: [x86_64, i686]
+        #build_configuration: [Release, Debug]
+        #build_platform: [x86_64, i686]
+        build_configuration: [Release]
         
     steps:
     #- name: Checkout repo
@@ -21,3 +22,4 @@ jobs:
         echo "Hellow World"
         echo ${{ matrix.build_configuration}}
         echo ${{ matrix.build_platform}}
+        echo ${{ github.event.head_commit.message }}
