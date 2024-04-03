@@ -28,8 +28,8 @@ jobs:
         echo ${{ github.event.pull_request.title }}
         $Env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
         Write-host "$Env:MESSAGE"
-        $Env:arek = "test"
-        Write-host $Env:arek
+        $arek = "test"
+        echo $arek
 
         
         echo ${{ toJson(github) }}
