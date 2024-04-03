@@ -19,7 +19,7 @@ jobs:
 
     - name: ECHO
       env:
-        arek: "test2"
+        AREK: "test2"
       run: |
         echo "Hellow World"
         echo ${{ matrix.build_configuration}}
@@ -29,7 +29,7 @@ jobs:
         $Env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
         Write-host "$Env:MESSAGE"
         $arek = "test"
-        echo "$arek"
+        echo "$AREK"
 
         
         echo ${{ toJson(github) }}
