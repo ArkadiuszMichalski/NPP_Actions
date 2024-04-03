@@ -11,7 +11,7 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v4
       with:
-       fetch-depth: ${{ github.event_name == "pull_request" && 2 || 0 }}
+        fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
     - name: Start commit filtering
       run: |
         $allowMaster = $true
