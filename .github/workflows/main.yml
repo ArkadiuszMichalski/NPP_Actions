@@ -25,8 +25,7 @@ jobs:
         echo "Hellow World"
         echo ${{ matrix.build_configuration}}
         #echo ${{ matrix.build_platform}}
-        echo ${{ github.event.head_commit.message }}
-        echo ${{ github.event.pull_request.title }}
+
         $env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
 
         $env:MESSAGE2 = "test"
@@ -34,9 +33,14 @@ jobs:
           echo "PRAWDA"
         }
 
+        echo $env:MESSAGE
+        echo $env:MESSAGE2
+
 
         echo ${{env.arek}}
         echo ${{env.arek2}}
 
         
   #echo ${{ toJson(github) }}
+#echo ${{ github.event.head_commit.message }}
+#echo ${{ github.event.pull_request.title }}
