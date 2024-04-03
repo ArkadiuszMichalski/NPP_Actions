@@ -10,15 +10,13 @@ jobs:
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     - name: Start XML validation
       run: |
         $allowMaster = $true
         $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
         $files_nowork = "md|txt|log|ini"
 
-        git diff --name-only -r HEAD^1 HEAD
+        git diff --name-only HEAD^1
 
 
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
