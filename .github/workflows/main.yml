@@ -4,7 +4,7 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   
-  filter_commit:
+  before_build:
     runs-on: windows-latest
     outputs:
       result: ${{ steps.filter.outputs.result }}
@@ -81,8 +81,8 @@ jobs:
         }
 
   windows:
-    needs: filter_commit
-    if: needs.filter_commit.outputs.result == '' || needs.filter_commit.outputs.result == 'ONEJOB'
+    needs: before_build
+    if: needs.before_build.outputs.result == '' || needs.before_build.outputs.result == 'ONEJOB'
     runs-on: windows-latest
 
     steps:
@@ -91,11 +91,11 @@ jobs:
     - name: Start widnow job
       run: |
         echo "Hellow World"
-        echo "${{ needs.filter_commit.outputs.result }}"
+        echo "${{ needs.before_build.outputs.result }}"
 
   gcc:
-    needs: filter_commit
-    if: needs.filter_commit.outputs.result == ''
+    needs: before_build
+    if: needs.before_build.outputs.result == ''
     runs-on: windows-latest
 
     steps:
@@ -104,4 +104,4 @@ jobs:
     - name: Start XML validation
       run: |
         echo "Hellow World"
-        echo "${{ needs.filter_commit.outputs.result }}"
+        echo "${{ needs.before_build.outputs.result }}"
