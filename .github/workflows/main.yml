@@ -3,47 +3,33 @@ name: CI_build
 on: [push, pull_request, workflow_dispatch]
 
 jobs:
-  build_windows_msys2:
-
+  
+  xml_validation:
     runs-on: windows-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        #build_configuration: [Release, Debug]
-        #build_platform: [x86_64, i686]
-        build_configuration: [Release]
-        
-    steps:
-    #- name: Checkout repo
-      #uses: actions/checkout@v4
 
-    - name: ECHO
-      env:
-        arek: "test2"
-        arek2: ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+    - name: Start XML validation
       run: |
         echo "Hellow World"
-        echo ${{ matrix.build_configuration}}
-        #echo ${{ matrix.build_platform}}
 
-        $env:MESSAGE = "${{ github.event.head_commit.message }}"
+  windows:
+    runs-on: windows-latest
 
-        $env:MESSAGE2 = "test"
-        if ($env:MESSAGE2 -eq "test"){
-          echo "PRAWDA"
-        }
-        
-        echo $env:MESSAGE
-        echo $env:MESSAGE2
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v4
+    - name: Start widnow job
+      run: |
+        echo "Hellow World"
 
+  gcc:
+    runs-on: windows-latest
 
-        echo ${{env.arek}}
-        echo ${{env.arek2}}
-
-        $arek3 = "arek3"
-        echo $arek3
-
-        
-  #echo ${{ toJson(github) }}
-#echo ${{ github.event.head_commit.message }}
-#echo ${{ github.event.pull_request.title }}
+    steps:
+    - name: Start gcc job
+      uses: actions/checkout@v4
+    - name: Start XML validation
+      run: |
+        echo "Hellow World"
