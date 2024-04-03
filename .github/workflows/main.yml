@@ -6,7 +6,9 @@ jobs:
   
   filter_commit:
     runs-on: windows-latest
-    
+    outputs:
+      result: ${{ steps.filter.outputs.result }}
+
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -76,9 +78,6 @@ jobs:
       
         #echo "Hellow World"
         #throw "Changed files on this commit require full build."
-
-    outputs:
-      result: ${{ steps.filter.outputs.result }}
 
   windows:
     needs: filter_commit
