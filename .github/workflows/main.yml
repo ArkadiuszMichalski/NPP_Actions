@@ -16,7 +16,7 @@ jobs:
         $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
         $files_nowork = "md|txt|log|ini"
        
-        $files_modified = @(git diff --name-only HEAD~1 HEAD)
+        $files_modified = @(git diff --name-only HEAD^1)
         $files_notmached = @($files_modified | Where-Object {$_ -notmatch "\.(xml|$files_nowork)$|$folders_onejob"})
 
 
