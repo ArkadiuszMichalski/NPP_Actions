@@ -17,6 +17,7 @@ jobs:
         $files_nowork = "md|txt|log|ini"
 
         git log main --oneline --all --graph --decorate
+        git branch -a
 
 
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
