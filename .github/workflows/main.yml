@@ -13,7 +13,7 @@ jobs:
     - name: Start XML validation
       run: |
         echo "Hellow World"
-        exit 1
+        throw "Changed files on this commit require full build."
 
   windows:
     needs: check_commit
