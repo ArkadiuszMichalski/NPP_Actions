@@ -28,15 +28,13 @@ jobs:
         echo ${{ github.event.head_commit.message }}
         echo ${{ github.event.pull_request.title }}
         $env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
-        Write-host $env:MESSAGE
-        Write-Output $env:MESSAGE
-        
-        $MESSAGE2 = "testerek"
-        Write-Output $MESSAGE2
-        
-        Write-Output dir env:
-        $env:MESSAGE
-        $arek = "test"
+
+        $env:MESSAGE2 = "test"
+        if ($env:MESSAGE2 == "test"){
+          echo "PRAWDA"
+        }
+
+
         echo ${{env.arek}}
         echo ${{env.arek2}}
 
