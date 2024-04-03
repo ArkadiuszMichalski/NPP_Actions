@@ -6,8 +6,6 @@ jobs:
   
   filter_commit:
     runs-on: windows-latest
-    outputs:
-      result: ${{ steps.check_commit.outputs.result }}
     
     steps:
     - name: Checkout repo
@@ -78,6 +76,9 @@ jobs:
         #echo "Hellow World"
         #throw "Changed files on this commit require full build."
 
+    outputs:
+      result: ${{ steps.filter_commit.outputs.result }}
+
   windows:
     needs: filter_commit
     if: ${{ needs.filter_commit.outputs.result != 'OK' }}
@@ -89,7 +90,6 @@ jobs:
     - name: Start widnow job
       run: |
         echo "Hellow World"
-        echo "${{ needs.filter_commit.outputs.result }}"
 
   gcc:
     needs: filter_commit
@@ -102,4 +102,3 @@ jobs:
     - name: Start XML validation
       run: |
         echo "Hellow World"
-        echo "${{ needs.filter_commit.outputs.result }}"
