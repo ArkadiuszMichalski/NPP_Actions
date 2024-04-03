@@ -25,9 +25,9 @@ jobs:
         echo ${{ github.event.head_commit.message }}
         echo ${{ github.event.pull_request.title }}
         $Env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
-        echo $Env:MESSAGE
+        Write-host $Env:MESSAGE
         $Env:arek = "test"
-        echo $Env:arek
+        Write-host $Env:arek
 
         
         echo ${{ toJson(github) }}
