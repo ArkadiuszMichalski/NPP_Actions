@@ -21,5 +21,5 @@ jobs:
       run: |
         echo "Hellow World"
         echo ${{ matrix.build_configuration}}
-        echo ${{ matrix.build_platform}}
+        #echo ${{ matrix.build_platform}}
         echo ${{ github.event.head_commit.message }}
