@@ -32,14 +32,16 @@ jobs:
         if ($env:MESSAGE2 -eq "test"){
           echo "PRAWDA"
         }
-        echo $env:MESSAGE2
-
+        
         echo $env:MESSAGE
         echo $env:MESSAGE2
 
 
         echo ${{env.arek}}
         echo ${{env.arek2}}
+
+        $arek3 = "arek3"
+        echo $arek3
 
         
   #echo ${{ toJson(github) }}
