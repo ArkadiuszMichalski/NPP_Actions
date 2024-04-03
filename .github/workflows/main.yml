@@ -29,7 +29,7 @@ jobs:
         $env:MESSAGE = "${{ github.event.head_commit.message }}"
 
         $env:MESSAGE2 = "test"
-        if ($env:MESSAGE2 == "test"){
+        if $$(($env:MESSAGE2 == "test")){
           echo "PRAWDA"
         }
 
