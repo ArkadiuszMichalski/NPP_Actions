@@ -16,7 +16,7 @@ jobs:
         $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
         $files_nowork = "md|txt|log|ini"
 
-         git diff --name-only HEAD~1 main
+        git log main --oneline --all --graph --decorate
 
 
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
