@@ -13,8 +13,10 @@ jobs:
     - name: Start XML validation
       run: |
         echo "Hellow World"
+        exit 1
 
   windows:
+    needs: xml_validation
     runs-on: windows-latest
 
     steps:
@@ -25,6 +27,7 @@ jobs:
         echo "Hellow World"
 
   gcc:
+    needs: xml_validation
     runs-on: windows-latest
 
     steps:
