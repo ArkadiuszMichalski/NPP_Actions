@@ -39,4 +39,4 @@ jobs:
         echo ${{env.arek2}}
 
         
-        echo ${{ toJson(github) }}
+        #echo ${{ toJson(github) }}
