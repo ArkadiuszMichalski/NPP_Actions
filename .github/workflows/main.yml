@@ -12,8 +12,27 @@ jobs:
       uses: actions/checkout@v4
     - name: Start XML validation
       run: |
-        echo "Hellow World"
-        throw "Changed files on this commit require full build."
+        $allowMaster = $true
+        
+        $isPush = (github.event_name  -eq "push") ? $true : $false
+        $isPull = !$isPush
+
+        echo $isPush
+        echo $$isPull
+
+        if ($allowMaster -or $isPush) {
+
+
+        
+
+        }
+        else{
+          Write-Output "Run standard process without commit filtration"
+        }
+
+      
+        #echo "Hellow World"
+        #throw "Changed files on this commit require full build."
 
   windows:
     needs: filter_commit
