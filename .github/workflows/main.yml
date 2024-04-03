@@ -92,6 +92,7 @@ jobs:
       run: |
         echo "Hellow World"
         echo "${{ needs.filter_commit.outputs }}"
+        echo ${{ toJson(needs.filter_commit.outputs) }}
 
   gcc:
     needs: filter_commit
@@ -105,3 +106,4 @@ jobs:
       run: |
         echo "Hellow World"
         echo "${{ needs.filter_commit.outputs }}"
+        echo ${{ toJson(needs.filter_commit.outputs) }}
