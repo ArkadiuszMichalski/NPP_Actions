@@ -42,7 +42,7 @@ jobs:
             if (($files_modified.length -gt 0 -and $files_notmached.length -eq 0) -or $commit_message -match "\[force (xml|nowork)\]") {
                 if (@($files_modified | Where-Object {$_ -notmatch "\.($files_nowork)$"}).length -eq 0 -or $commit_message -match "\[force nowork\]") {
                     Write-Output "Changed files on this commit don't require any additional tasks.`n"
-                    Write-Output "::set-output name=result::OK"
+                    Write-Output "result=OK" >> $env:GITHUB_OUTPUT
                 }
                 else {
                     Write-Output "XML validation mode`n"
@@ -52,7 +52,7 @@ jobs:
                         python PowerEditor\Test\xmlValidator\validator_xml.py
                         if ($LastExitCode -eq 0) {
                             Write-Output "`nAll XML files are valid.`n"
-                            Write-Output "::set-output name=result::OK"
+                            Write-Output "result=OK" >> $env:GITHUB_OUTPUT
                         }
                         else {
                             Write-Output "`nSome XML files are invalid.`n"
