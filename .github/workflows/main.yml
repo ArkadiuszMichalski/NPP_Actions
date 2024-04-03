@@ -89,7 +89,7 @@ jobs:
     - name: Start widnow job
       run: |
         echo "Hellow World"
-        echo ${{ needs.filter_commit.outputs.result }}
+        echo "${{ needs.filter_commit.outputs.result }}"
 
   gcc:
     needs: filter_commit
@@ -102,4 +102,4 @@ jobs:
     - name: Start XML validation
       run: |
         echo "Hellow World"
-        echo ${{ needs.filter_commit.outputs.result }}
+        echo "${{ needs.filter_commit.outputs.result }}"
