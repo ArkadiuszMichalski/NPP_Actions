@@ -62,7 +62,10 @@ jobs:
                 }
             }
             elseif ($commit_message -match "\[xml\]" -and $commit_message -notmatch "\[force compile\]") {
-                throw "Changed files on this commit require full build."
+              throw "Changed files on this commit require full build."
+            }
+            else{
+              Write-Output "Run standard process without commit filtration"
             }
         }
         else{
