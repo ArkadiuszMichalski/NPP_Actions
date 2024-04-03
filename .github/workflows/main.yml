@@ -82,6 +82,7 @@ jobs:
 
   matrix:
     needs: before_build
+    if: needs.before_build.outputs.result == '' || (matrix.build_platform == 'Win32' && matrix.build_configuration == 'Debug' && needs.before_build.outputs.result == 'ONEJOB')
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -108,12 +109,12 @@ jobs:
 
   windows:
     needs: before_build
-    if: needs.before_build.outputs.result == '' || needs.before_build.outputs.result == 'ONEJOB'
+    if: needs.before_build.outputs.result == ''
     runs-on: windows-latest
 
     steps:
-    - name: Checkout repo
-      uses: actions/checkout@v4
+    #- name: Checkout repo
+      #uses: actions/checkout@v4
     - name: Start widnow job
       run: |
         echo "Hellow World"
@@ -125,9 +126,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    #- name: Checkout repo
+      #uses: actions/checkout@v4
     - name: Start gcc job
-      uses: actions/checkout@v4
-    - name: Start XML validation
       run: |
         echo "Hellow World"
         echo "${{ needs.before_build.outputs.result }}"
