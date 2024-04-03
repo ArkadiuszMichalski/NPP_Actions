@@ -24,7 +24,7 @@ jobs:
         #echo ${{ matrix.build_platform}}
         echo ${{ github.event.head_commit.message }}
         echo ${{ github.event.pull_request.title }}
-        $MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
+        $MESSAGE = ${{ github.event.head_commit.message }}
         echo  $env:MESSAGE
 
         
