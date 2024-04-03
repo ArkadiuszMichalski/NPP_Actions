@@ -44,7 +44,7 @@ jobs:
             if (($files_modified.length -gt 0 -and $files_notmached.length -eq 0) -or $commit_message -match "\[force (xml|nowork)\]") {
                 if (@($files_modified | Where-Object {$_ -notmatch "\.($files_nowork)$"}).length -eq 0 -or $commit_message -match "\[force nowork\]") {
                     Write-Output "Changed files on this commit don't require any additional tasks.`n"
-                    Write-Output "result=OK" >> $env:GITHUB_OUTPUT
+                    Write-Output "result=PASS" >> $env:GITHUB_OUTPUT
                 }
                 else {
                     Write-Output "XML validation mode`n"
@@ -54,18 +54,23 @@ jobs:
                         python PowerEditor\Test\xmlValidator\validator_xml.py
                         if ($LastExitCode -eq 0) {
                             Write-Output "`nAll XML files are valid.`n"
-                            Write-Output "result=OK" >> $env:GITHUB_OUTPUT
+                            Write-Output "result=PASS" >> $env:GITHUB_OUTPUT
                         }
                         else {
                             Write-Output "`nSome XML files are invalid.`n"
                             $host.SetShouldExit($LastExitCode)
                         }
                     }
+                    else {
+                      Write-Output "Run only Win32/Debug job"
+                      Write-Output "result=ONEJOB" >> $env:GITHUB_OUTPUT
+                    }
         
                 }
             }
-            elseif ($commit_message -match "\[xml\]" -and $commit_message -notmatch "\[force compile\]") {
-              throw "Changed files on this commit require full build."
+            elseif ($commit_message -match "\[force compile\]") {
+              Write-Output "Run only Win32/Debug job"
+              Write-Output "result=ONEJOB" >> $env:GITHUB_OUTPUT
             }
             else{
               Write-Output "Run standard process without commit filtration"
@@ -75,13 +80,9 @@ jobs:
           Write-Output "Run standard process without commit filtration"
         }
 
-      
-        #echo "Hellow World"
-        #throw "Changed files on this commit require full build."
-
   windows:
     needs: filter_commit
-    if: ${{ needs.filter_commit.outputs.result != 'OK' }}
+    if: needs.filter_commit.outputs.result != 'PASS'
     runs-on: windows-latest
 
     steps:
@@ -94,7 +95,7 @@ jobs:
 
   gcc:
     needs: filter_commit
-    if: ${{ needs.filter_commit.outputs.result != 'OK' }}
+    if: needs.filter_commit.outputs.result != 'PASS'
     runs-on: windows-latest
 
     steps:
