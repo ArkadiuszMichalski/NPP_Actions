@@ -26,7 +26,7 @@ jobs:
         echo ${{ matrix.build_configuration}}
         #echo ${{ matrix.build_platform}}
 
-        $env:MESSAGE = ${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }}
+        $env:MESSAGE = @(${{ github.event.pull_request.title }} -or ${{ github.event.head_commit.message }})
 
         $env:MESSAGE2 = "test"
         if ($env:MESSAGE2 == "test"){
