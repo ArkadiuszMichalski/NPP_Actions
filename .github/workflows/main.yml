@@ -17,7 +17,7 @@ jobs:
         $files_nowork = "md|txt|log|ini"
         
 
-        echo git --version
+        Write-Output (git --version) | select-object -first 1
 
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isPull = !$isPush
