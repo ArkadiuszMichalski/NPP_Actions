@@ -23,3 +23,4 @@ jobs:
         echo ${{ matrix.build_configuration}}
         #echo ${{ matrix.build_platform}}
         echo ${{ github.event.head_commit.message }}
+        echo ${{ toJson(github) }}
