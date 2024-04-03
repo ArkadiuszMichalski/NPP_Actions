@@ -14,7 +14,7 @@ jobs:
       run: |
         $allowMaster = $true
         
-        $isPush = (github.event_name  -eq "push") ? $true : $false
+        $isPush = (${{github.event_name  -eq "push"}}) ? $true : $false
         $isPull = !$isPush
 
         echo $isPush
