@@ -18,7 +18,7 @@ jobs:
         $isPull = !$isPush
 
         echo $isPush
-        echo $$isPull
+        echo $isPull
 
         if ($allowMaster -or $isPush) {
 
