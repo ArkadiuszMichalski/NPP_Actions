@@ -12,13 +12,16 @@ jobs:
       uses: actions/checkout@v4
     - name: Start XML validation
       run: |
-        $allowMaster = $false
-        
+        $allowMaster = $true
+        $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
+        $files_nowork = "md|txt|log|ini"
+        $files_modified = @(git diff --name-only HEAD~1)
+        $files_notmached = @($files_modified | Where-Object {$_ -notmatch "\.(xml|$files_nowork)$|$folders_onejob"})
+
+        echo $files_modified
+
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isPull = !$isPush
-
-        echo $isPush
-        echo $isPull
 
         if ($allowMaster -or $isPush) {
 
