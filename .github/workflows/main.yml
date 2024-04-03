@@ -1,0 +1,23 @@
+name: CI_build
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build_windows_msys2:
+
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        build_configuration: [Release, Debug]
+        build_platform: [x86_64, i686]
+        
+    steps:
+    #- name: Checkout repo
+      #uses: actions/checkout@v4
+
+    - name: ECHO
+      run: |
+        echo "Hellow World"
+        echo ${{ matrix.build_configuration}}
+        echo ${{ matrix.build_platform}}
