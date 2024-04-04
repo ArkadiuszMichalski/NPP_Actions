@@ -31,14 +31,13 @@ jobs:
         $isPull = !$isPush
 
         if ($isPush){
-          $files_modified = @(git diff --name-only HEAD~1)
           $commit_message = "${{ github.event.head_commit.message }}"
         }
         else{
-          $files_modified = @(git diff --name-only HEAD~1)
           $commit_message = "${{ github.event.pull_request.title }}"
         }  
-        
+
+        $files_modified = @(git diff --name-only HEAD~1)
         $files_notmached = @($files_modified | Where-Object {$_ -notmatch "\.(xml|$files_nowork)$|$folders_onejob"})
     
         echo $commit_message
