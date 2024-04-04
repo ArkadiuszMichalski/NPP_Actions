@@ -23,7 +23,7 @@ jobs:
         $files_nowork = "md|txt|log|ini"
 
         Write-Output 'matrix={"build_configuration": ["Release", "Debug"], "build_platform": ["x64", "Win32"]}' >> $env:GITHUB_OUTPUT
-
+ 
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isPull = !$isPush
 
