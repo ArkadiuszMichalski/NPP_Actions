@@ -34,7 +34,9 @@ jobs:
           $commit_message = "${{ github.event.head_commit.message }}"
         }
         else{
-          $commit_message = "${{ github.event.pull_request.title }}"
+          $last_comit = @(Invoke-RestMethod ${{ github.event.pull_request._links.commits.href }})[0]  | Select-Object -Last 1
+          $commit_message = $last_comit.commit.message
+          #$commit_message = "${{ github.event.pull_request.title }}"
         }  
 
         $files_modified = @(git diff --name-only HEAD~1)
