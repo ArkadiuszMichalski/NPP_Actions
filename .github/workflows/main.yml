@@ -36,7 +36,7 @@ jobs:
         
         $files_notmached = @($files_modified | Where-Object {$_ -notmatch "\.(xml|$files_nowork)$|$folders_onejob"})
 
-        Write-Output 'matrix=build_configuration: [Release, Debug] build_platform: [x64, Win32]' >> $env:GITHUB_OUTPUT
+        Write-Output 'matrix={"build_configuration": ["Release", "Debug"], "build_platform": ["x64", "Win32"]}' >> $env:GITHUB_OUTPUT
 
         echo $commit_message
         echo $files_modified
