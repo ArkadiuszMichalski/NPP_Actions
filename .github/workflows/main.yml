@@ -31,11 +31,11 @@ jobs:
         $isPull = !$isPush
 
         if ($isPush){
-          $files_modified = @(git diff --name-only HEAD^1 HEAD)
+          $files_modified = @(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
           $commit_message = "${{ github.event.head_commit.message }}"
         }
         else{
-          $files_modified = @(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
+          $files_modified = @(git diff --name-only HEAD^1 HEAD)
           $commit_message = "${{ github.event.pull_request.title }}"
         }  
         
