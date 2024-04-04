@@ -42,9 +42,6 @@ jobs:
         echo $files_modified
         echo $files_notmached
 
-        @(git diff --name-only HEAD^1 HEAD)
-        git diff --name-only HEAD^1 HEAD
-
         if ($allowMaster -or $isPull) {
 
             if (($files_modified.length -gt 0 -and $files_notmached.length -eq 0) -or $commit_message -match "\[force (xml|nowork)\]") {
