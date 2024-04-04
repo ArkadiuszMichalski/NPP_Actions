@@ -22,6 +22,8 @@ jobs:
         $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
         $files_nowork = "md|txt|log|ini"
 
+        Write-Output 'matrix={"build_configuration": ["Release", "Debug"], "build_platform": ["x64", "Win32"]}' >> $env:GITHUB_OUTPUT
+
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isPull = !$isPush
 
@@ -35,9 +37,7 @@ jobs:
         }  
         
         $files_notmached = @($files_modified | Where-Object {$_ -notmatch "\.(xml|$files_nowork)$|$folders_onejob"})
-
-        Write-Output 'matrix={"build_configuration": ["Release", "Debug"], "build_platform": ["x64", "Win32"]}' >> $env:GITHUB_OUTPUT
-
+    
         echo $commit_message
         echo $files_modified
         echo $files_notmached
@@ -65,24 +65,24 @@ jobs:
                         }
                     }
                     else {
-                      Write-Output "Run only Win32/Debug job"
+                      Write-Output "Run only one Win32/Debug job"
                       Write-Output "result=ONEJOB" >> $env:GITHUB_OUTPUT
                       Write-Output 'matrix={"build_configuration": ["Debug"], "build_platform": ["Win32"]}' >> $env:GITHUB_OUTPUT
                     }
         
                 }
             }
-            elseif ($commit_message -match "\[force compile\]") {
-              Write-Output "Run only Win32/Debug job"
+            elseif ($commit_message -match "\[force onejob\]") {
+              Write-Output "Run only one Win32/Debug job"
               Write-Output "result=ONEJOB" >> $env:GITHUB_OUTPUT
               Write-Output 'matrix={"build_configuration": ["Debug"], "build_platform": ["Win32"]}' >> $env:GITHUB_OUTPUT
             }
             else{
-              Write-Output "Run standard process without commit filtration"
+              Write-Output "Run standard jobs"
             }
         }
         else{
-          Write-Output "Run standard process without commit filtration"
+          Write-Output "Run standard jobs"
         }
 
   matrix:
