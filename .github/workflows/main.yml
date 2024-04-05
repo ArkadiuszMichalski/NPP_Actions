@@ -19,7 +19,7 @@ jobs:
     - name: Commmit filtering
       id: filter
       run: |
-        $allowMaster = $true
+        $allowMaster = $false
         $folders_onejob = "PowerEditor/(Test|(installer/(filesForTesting|functionList)))/"
         $files_nowork = "md|txt|log|ini"
         echo '${{ toJson(github) }}'
