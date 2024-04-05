@@ -29,10 +29,10 @@ jobs:
  
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isPull = !$isPush
-        if ($isPush){
+        if ($isPush) {
           $commit_message = "${{ github.event.head_commit.message }}"
         }
-        else{
+        else {
           $last_commit = @(Invoke-RestMethod ${{ github.event.pull_request._links.commits.href }})[0]  | Select-Object -Last 1
           $commit_message = $last_commit.commit.message
           #$commit_message = "${{ github.event.pull_request.title }}"
@@ -83,11 +83,11 @@ jobs:
         
                 }
             }
-            else{
+            else {
               Write-Output "Run standard jobs"
             }
         }
-        else{
+        else {
           Write-Output "Run standard jobs"
         }
 
