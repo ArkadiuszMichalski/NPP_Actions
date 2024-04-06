@@ -46,6 +46,7 @@ jobs:
         echo $files_notmached
 
         echo $allowMaster
+        echo $isMaster
         echo (!$isMaster)
 
         if ($allowMaster -or !$isMaster) {
