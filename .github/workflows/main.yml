@@ -27,10 +27,8 @@ jobs:
         Write-Output $matrix_all >> $env:GITHUB_OUTPUT
  
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
-        #$isPull = !$isPush
         $isMaster = ($isPush -and "${{github.ref_name == github.event.repository.master_branch }}")
-        echo $isMaster
-        echo !($isMaster)
+        
         if ($isPush) {
           $commit_message = "${{ github.event.head_commit.message }}"
         }
@@ -47,7 +45,7 @@ jobs:
         echo $files_modified
         echo $files_notmached
 
-        if ($allowMaster -or $isPull) {
+        if ($allowMaster -or !$isMaster) {
 
             if ($commit_message -match "\[force all\]") {
               Write-Output "Run standard jobs"
