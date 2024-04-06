@@ -45,7 +45,11 @@ jobs:
         echo $files_modified
         echo $files_notmached
 
+        echo $allowMaster
+        echo (!$isMaster)
+
         if ($allowMaster -or !$isMaster) {
+          echo "aaa"
 
             if ($commit_message -match "\[force all\]") {
               Write-Output "Run standard jobs"
