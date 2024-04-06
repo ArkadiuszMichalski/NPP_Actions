@@ -26,7 +26,7 @@ jobs:
         $matrix_onejob = 'matrix={"build_configuration": ["Debug"], "build_platform": ["Win32"]}'
         Write-Output $matrix_all >> $env:GITHUB_OUTPUT
  
-        $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
+        $isPush = "${{github.event_name }}" -eq "push" ? $true : $false
         $isMaster = $isPush -and $${{ github.ref_name == github.event.repository.master_branch }}
 
         echo $isPush
@@ -49,8 +49,6 @@ jobs:
         echo $files_notmached
 
         if ($allowMaster -or !$isMaster) {
-          echo "aaa"
-
             if ($commit_message -match "\[force all\]") {
               Write-Output "Run standard jobs"
             }
