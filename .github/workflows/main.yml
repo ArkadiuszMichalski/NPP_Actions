@@ -27,7 +27,7 @@ jobs:
         Write-Output $matrix_all >> $env:GITHUB_OUTPUT
  
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
-        $isMaster = ($isPush -and $${{ github.ref_name == github.event.repository.master_branch }})
+        $isMaster = $isPush -and $${{ github.ref_name == github.event.repository.master_branch }}
 
         echo $isPush
         echo $isMaster
