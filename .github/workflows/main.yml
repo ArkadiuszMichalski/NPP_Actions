@@ -28,6 +28,9 @@ jobs:
  
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
         $isMaster = ($isPush -and "${{github.ref_name == github.event.repository.master_branch }}")
+
+        echo $isPush
+        echo $isMaster
         
         if ($isPush) {
           $commit_message = "${{ github.event.head_commit.message }}"
@@ -44,10 +47,6 @@ jobs:
         echo $commit_message
         echo $files_modified
         echo $files_notmached
-
-        echo $allowMaster
-        echo $isMaster
-        echo (!$isMaster)
 
         if ($allowMaster -or !$isMaster) {
           echo "aaa"
