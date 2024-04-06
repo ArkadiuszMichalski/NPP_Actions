@@ -28,7 +28,9 @@ jobs:
         Write-Output $matrix_all >> $env:GITHUB_OUTPUT
  
         $isPush = ("${{github.event_name }}" -eq "push") ? $true : $false
-        $isPull = !$isPush
+        #$isPull = !$isPush
+        $isMaster = $isPush -and "${{github.ref_name == github.event.repository.master_branch }}"
+        echo $isMaster
         if ($isPush) {
           $commit_message = "${{ github.event.head_commit.message }}"
         }
