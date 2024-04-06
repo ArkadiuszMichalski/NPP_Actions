@@ -30,7 +30,7 @@ jobs:
         #$isPull = !$isPush
         $isMaster = ($isPush -and "${{github.ref_name == github.event.repository.master_branch }}")
         echo $isMaster
-        echo !$isMaster
+        echo !($isMaster)
         if ($isPush) {
           $commit_message = "${{ github.event.head_commit.message }}"
         }
