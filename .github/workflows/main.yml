@@ -49,7 +49,7 @@ jobs:
         echo $commit_message
         echo $commit_title
         echo $files_modified
-        echo $files_notmached 
+        echo $files_notmached  
 
         if ($allowMaster -or !$isMaster) {
             if ($commit_title -match "\[force all\]") {
