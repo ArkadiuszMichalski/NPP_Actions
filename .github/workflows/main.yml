@@ -178,7 +178,7 @@ jobs:
         if ( $${{ matrix.build_configuration == 'Debug'}} ) {$Env:DEBUG = '1'}
 
         Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
-        Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
+        Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
     
     #- name: Make n++ exe
       #working-directory: .\
