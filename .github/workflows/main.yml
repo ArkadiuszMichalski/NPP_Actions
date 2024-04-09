@@ -167,6 +167,7 @@ jobs:
       #uses: actions/checkout@v4
 
     - name: Setup Msys2
+      run: |
         Write-host "${{ matrix.build_platform }}"
         Write-host "${{ matrix.build_configuration }}"
         $Env:Path = 'C:\msys64\usr\bin' + [IO.Path]::PathSeparator + $Env:Path
