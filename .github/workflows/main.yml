@@ -155,6 +155,10 @@ jobs:
     runs-on: windows-latest
     needs: before_build
     if: needs.before_build.outputs.result == ''
+    env:
+      MSYS2_ALLOW_UPDATE: true 
+      MSYS2_ALLOW CACHE: false
+    
     strategy:
       fail-fast: false
       matrix:
@@ -188,6 +192,9 @@ jobs:
 
         Write-Output $GCC_new
         Write-Output $MAKE_new
+
+        Write-Output MSYS2_ALLOW_UPDATE
+        Write-Output MSYS2_ALLOW CACHE
 
     
     #- name: Make n++ exe
