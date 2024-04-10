@@ -180,6 +180,8 @@ jobs:
         if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:MSYSTEM = 'MINGW64'; Write-Output "MSYSTEM=$Env:MSYSTEM" >> $env:GITHUB_ENV}
         if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:Path = 'C:\msys64\mingw64\bin' + [IO.Path]::PathSeparator + $Env:Path; Write-Output "Path=$Env:Path" >> $env:GITHUB_ENV}
         if ( $${{ matrix.build_configuration == 'Debug'}} ) {$Env:DEBUG = '1'}
+
+        $Env:Path = 'AAAAAAAAAAAAA' + [IO.Path]::PathSeparator + $Env:Path
           
         Write-Output $Env:Path
         Write-Output $Env:MSYSTEM
