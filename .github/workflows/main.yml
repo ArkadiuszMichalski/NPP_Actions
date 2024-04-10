@@ -193,8 +193,8 @@ jobs:
         Write-Output $GCC_new
         Write-Output $MAKE_new
 
-        Write-Output MSYS2_ALLOW_UPDATE
-        Write-Output MSYS2_ALLOW CACHE
+        Write-Output $MSYS2_ALLOW_UPDATE
+        Write-Output $MSYS2_ALLOW CACHE
 
     
     #- name: Make n++ exe
