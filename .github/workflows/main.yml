@@ -190,8 +190,8 @@ jobs:
           $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
           $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
 
-          Write-Output "GCC_new=$GCC_new" >> $GITHUB_ENV
-          Write-Output "MAKE_new=$MAKE_new" >> $GITHUB_ENV
+          Write-Output "GCC_new=$GCC_new" >> $env:GITHUB_ENV
+          Write-Output "MAKE_new=$MAKE_new" >> $env:GITHUB_ENV
 
           #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
           #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
@@ -234,8 +234,10 @@ jobs:
       run: |
         echo $GCC_new
         echo $MAKE_new
+        echo "==="
         echo $Env:GCC_new
         echo $Env:MAKE_new
+        echo "==="
         echo ${{ env.GCC_new }}
         echo ${{ env.MAKE_new }}
 
