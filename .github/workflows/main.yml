@@ -157,7 +157,7 @@ jobs:
     if: needs.before_build.outputs.result == ''
     env:
       MSYS2_ALLOW_UPDATE: true 
-      MSYS2_ALLOW CACHE: true
+      MSYS2_ALLOW_CACHE: false
     
     strategy:
       fail-fast: false
