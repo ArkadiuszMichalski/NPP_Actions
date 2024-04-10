@@ -187,8 +187,8 @@ jobs:
           #bash -lc "pacman --noconfirm -Syuu"
           #bash -lc "pacman --noconfirm -Syuu"
 
-          $Env:$GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
-          $Env:$MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
+          $Env:GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
+          $Env:MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
       
           #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
           #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
