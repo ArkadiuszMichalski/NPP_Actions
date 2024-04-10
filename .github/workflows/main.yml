@@ -234,13 +234,12 @@ jobs:
       run: |
         echo $GCC_new
         echo $MAKE_new
-        echo "==="
+        echo "===1"
         echo $Env:GCC_new
         echo $Env:MAKE_new
-        echo "==="
+        echo "===2"
         echo "${{ env.GCC_new }}"
         echo "${{ env.MAKE_new }}"
-        echo "==="
 
     #- name: Make n++ exe
       #working-directory: .\
