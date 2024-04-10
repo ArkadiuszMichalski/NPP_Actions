@@ -237,6 +237,8 @@ jobs:
         echo "===2"
         echo "${{ env.GCC_new }}"
         echo "${{ env.MAKE_new }}"
+        echo "===3"
+        echo $Env:MSYSTEM
         #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
         #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
       
