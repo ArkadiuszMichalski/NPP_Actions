@@ -189,6 +189,8 @@ jobs:
         Add-MpPreference -ExclusionPath "C:\msys64"
 
         bash -lc "pacman -v"
+
+        Write-Output (where.exe mingw32-make)
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
