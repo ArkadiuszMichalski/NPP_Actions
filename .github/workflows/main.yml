@@ -176,9 +176,9 @@ jobs:
         Write-host "${{ matrix.build_configuration }}"
         $Env:Path = 'C:\msys64\usr\bin' + [IO.Path]::PathSeparator + $Env:Path
         if ( $${{ matrix.build_platform == 'i686'}} ) {$Env:MSYSTEM = 'MINGW32'; Write-Output "MSYSTEM=$Env:MSYSTEM" >> $env:GITHUB_ENV}
-        if ( $${{ matrix.build_platform == 'i686'}} ) {$Env:Path = 'C:\msys64\mingw32\bin' + [IO.Path]::PathSeparator + $Env:Path; Write-Output "Path=$Env:Path" >> $env:GITHUB_PATH}
+        if ( $${{ matrix.build_platform == 'i686'}} ) {$Env:Path = 'C:\msys64\mingw32\bin' + [IO.Path]::PathSeparator + $Env:Path; Write-Output "Path=$Env:Path" >> $env:GITHUB_ENV}
         if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:MSYSTEM = 'MINGW64'; Write-Output "MSYSTEM=$Env:MSYSTEM" >> $env:GITHUB_ENV}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:Path = 'C:\msys64\mingw64\bin' + [IO.Path]::PathSeparator + $Env:Path; Write-Output "Path=$Env:Path" >> $env:GITHUB_PATH}
+        if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:Path = 'C:\msys64\mingw64\bin' + [IO.Path]::PathSeparator + $Env:Path; Write-Output "Path=$Env:Path" >> $env:GITHUB_ENV}
         if ( $${{ matrix.build_configuration == 'Debug'}} ) {$Env:DEBUG = '1'}
           
         Write-Output $Env:Path
