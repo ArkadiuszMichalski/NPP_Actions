@@ -205,7 +205,7 @@ jobs:
         if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
         if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
 
-        echo $${{'false'}}
+        if ($${{'false'}}){echo "FALSE"}
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
