@@ -181,44 +181,52 @@ jobs:
         if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:Path = 'C:\msys64\mingw64\bin' + [IO.Path]::PathSeparator + $Env:Path}
         if ( $${{ matrix.build_configuration == 'Debug'}} ) {$Env:DEBUG = '1'}
 
-        $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
-        $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
-    
-        #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
-        #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
-
-        #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern '-gcc (.*) \(' | %{$_.Matches.Groups[1].value}
-        #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern '-make (.*) \(' | %{$_.Matches.Groups[1].value}
-
-        Write-Output $GCC_new
-        Write-Output $MAKE_new
-
-        Write-Output $MSYS2_ALLOW_UPDATE
-        Write-Output $MSYS2_ALLOW_CACHE
-
-        Write-Output $Env:MSYS2_ALLOW_UPDATE
-        Write-Output $Env:MSYS2_ALLOW_CACHE 
-
-        if ($MSYS2_ALLOW_UPDATE){echo "update OK"}
-        if ($MSYS2_ALLOW_CACHE){echo "cache OK"}
-
-        if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
-        if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
-
-        if ($${{'false'}}){echo "FALSE"}
-        
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
+          
+          #bash -lc "pacman --noconfirm -Syuu"
+          #bash -lc "pacman --noconfirm -Syuu"
+
+          $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
+          $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
+      
+          #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
+          #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
+  
+          #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern '-gcc (.*) \(' | %{$_.Matches.Groups[1].value}
+          #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern '-make (.*) \(' | %{$_.Matches.Groups[1].value}
+  
+          Write-Output $GCC_new
+          Write-Output $MAKE_new
+  
+          Write-Output $MSYS2_ALLOW_UPDATE
+          Write-Output $MSYS2_ALLOW_CACHE
+  
+          Write-Output $Env:MSYS2_ALLOW_UPDATE
+          Write-Output $Env:MSYS2_ALLOW_CACHE 
+  
+          if ($MSYS2_ALLOW_UPDATE){echo "update OK"}
+          if ($MSYS2_ALLOW_CACHE){echo "cache OK"}
+  
+          if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
+          if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
+    
+
           #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
           #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
+        
         }
     
     - name: Cache MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
-      run: |
-        echo "Test"
+      #run: |
+       #echo "Test"
+      #id: cache-msys2
+      uses: actions/cache@v4
+      with:
+        path: ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
+        key: ${{ runner.os }}-msys2-${{ matrix.build_platform }}-GCC_${{ env.$GCC_new }}-MAKE_-GCC_${{ env.$MAKE_new }}
 
-    
     #- name: Make n++ exe
       #working-directory: .\
       #run: |
