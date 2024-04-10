@@ -186,7 +186,7 @@ jobs:
         echo "===1"
         Write-Output "${{ env.MSYSTEM }}"
         
-        powershell -command 'Add-MpPreference -ExclusionPath "C:\msys64"'
+        Add-MpPreference -ExclusionPath "C:\msys64"
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
