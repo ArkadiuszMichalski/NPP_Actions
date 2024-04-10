@@ -213,7 +213,7 @@ jobs:
         }
     
     - name: Cache Msys2
-      if: ${{ env.MSYS2_ALLOW_UPDATE && MSYS2_ALLOW_CACHE}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE && env.MSYS2_ALLOW_CACHE}}
       run: |
         echo "Test"
 
