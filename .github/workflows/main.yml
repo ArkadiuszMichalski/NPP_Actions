@@ -186,8 +186,8 @@ jobs:
         #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern '-gcc (.*) \(' | %{$_.Matches.Groups[1].value}
         #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern '-make (.*) \(' | %{$_.Matches.Groups[1].value}
 
-        #Write-Output $GCC_new
-        #Write-Output $MAKE_new
+        Write-Output $GCC_new
+        Write-Output $MAKE_new
 
     
     #- name: Make n++ exe
