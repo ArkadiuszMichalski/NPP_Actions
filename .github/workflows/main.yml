@@ -242,6 +242,10 @@ jobs:
         Write-Output (((gcc --version) | select-object -first 1) + " " + (gcc -dumpmachine))
         Write-Output (make --version) | select-object -first 1
         Write-Output (sh --version) | select-object -first 1
+
+        Write-Output (where.exe gcc)
+        Write-Output (where.exe make)
+        Write-Output (where.exe sh)
     
     - name: Update MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && (env.MSYS2_ALLOW_CACHE == 'false' || steps.cache-msys2.outputs.cache-hit != 'true') }}
