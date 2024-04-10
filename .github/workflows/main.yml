@@ -157,7 +157,7 @@ jobs:
     if: needs.before_build.outputs.result == ''
     env:
       MSYS2_ALLOW_UPDATE: true 
-      MSYS2_ALLOW_CACHE: true
+      MSYS2_ALLOW_CACHE: false
     
     strategy:
       fail-fast: false
@@ -206,6 +206,9 @@ jobs:
 
         if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
         if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
+        
+        if (${{ env.MSYS2_ALLOW_UPDATE }}){echo "update OK 3"}
+        if (${{ env.MSYS2_ALLOW_CACHE }}){echo "cache OK 3"}
 
         if ($Env:MSYS2_ALLOW_UPDATE) {
           #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
