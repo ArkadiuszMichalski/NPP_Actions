@@ -183,9 +183,7 @@ jobs:
 
         $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
         $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
-        
-        $GCC_name
-
+    
         #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
         #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
 
@@ -207,8 +205,8 @@ jobs:
         if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
         if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
         
-        if (${{ env.MSYS2_ALLOW_UPDATE }}){echo "update OK 3"}
-        if (${{ env.MSYS2_ALLOW_CACHE }}){echo "cache OK 3"}
+        #if (${{ env.MSYS2_ALLOW_UPDATE }}){echo "update OK 3"}
+        #if (${{ env.MSYS2_ALLOW_CACHE }}){echo "cache OK 3"}
 
         if ($Env:MSYS2_ALLOW_UPDATE) {
           #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
