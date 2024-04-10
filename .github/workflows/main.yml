@@ -187,6 +187,8 @@ jobs:
         Write-Output "${{ env.MSYSTEM }}"
         
         Add-MpPreference -ExclusionPath "C:\msys64"
+
+        bash -lc "pacman -v"
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
