@@ -228,11 +228,11 @@ jobs:
         key: ${{ runner.os }}-msys2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_-GCC_${{ env.MAKE_new }}
     
     - name: Update MSYS2
-       run: |
-         echo $GCC_new
-         echo $MAKE_new
-         echo $Env:GCC_new
-         echo $Env:MAKE_new
+      run: |
+        echo $GCC_new
+        echo $MAKE_new
+        echo $Env:GCC_new
+        echo $Env:MAKE_new
 
     #- name: Make n++ exe
       #working-directory: .\
