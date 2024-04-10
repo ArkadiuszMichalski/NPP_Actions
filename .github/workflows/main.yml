@@ -175,12 +175,15 @@ jobs:
         Write-host "${{ matrix.build_platform }}"
         Write-host "${{ matrix.build_configuration }}"
         $Env:Path = 'C:\msys64\usr\bin' + [IO.Path]::PathSeparator + $Env:Path
-        if ( $${{ matrix.build_platform == 'i686'}} ) {$Env:MSYSTEM = 'MINGW32'}
-        if ( $${{ matrix.build_platform == 'i686'}} ) {$Env:Path = 'C:\msys64\mingw32\bin' + [IO.Path]::PathSeparator + $Env:Path}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:MSYSTEM = 'MINGW64'}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:Path = 'C:\msys64\mingw64\bin' + [IO.Path]::PathSeparator + $Env:Path}
-        if ( $${{ matrix.build_configuration == 'Debug'}} ) {$Env:DEBUG = '1'}
-
+        if ( $${{ matrix.build_platform == 'i686'}} ) {Write-Output "MSYSTEM=MINGW32" >> $env:GITHUB_ENV}
+        if ( $${{ matrix.build_platform == 'i686'}} ) {Write-Output (Path="C:\msys64\mingw32\bin" + [IO.Path]::PathSeparator + $Env:Path)  >> $env:GITHUB_ENV}
+        if ( $${{ matrix.build_platform == 'x86_64'}} ) {Write-Output "MSYSTEM=MINGW64" >> $env:GITHUB_ENV}
+        if ( $${{ matrix.build_platform == 'x86_64'}} ) {Write-Output (Path="C:\msys64\mingw64\bin" + [IO.Path]::PathSeparator + $Env:Path)  >> $env:GITHUB_ENV}
+        if ( $${{ matrix.build_configuration == 'Debug'}} ) {Write-Output "DEBUG=1" >> $env:GITHUB_ENV}
+          
+        Write-Output $Env:Path
+        Write-Output $Env:MSYSTEM
+        
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
           
@@ -239,6 +242,7 @@ jobs:
         echo "${{ env.MAKE_new }}"
         echo "===3"
         echo $Env:MSYSTEM
+        echo "===3"
         #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
         #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
       
