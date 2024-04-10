@@ -235,6 +235,13 @@ jobs:
           #'C:\msys64\usr'
           #${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
         key: ${{ runner.os }}-MSYS2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_${{ env.MAKE_new }}
+
+    - name: Check MSYS2 tools version
+      run: |
+        Write-Output "Tools version:"
+        Write-Output (((gcc --version) | select-object -first 1) + " " + (gcc -dumpmachine))
+        Write-Output (make --version) | select-object -first 1
+        Write-Output (sh --version) | select-object -first 1
     
     - name: Update MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && (env.MSYS2_ALLOW_CACHE == 'false' || steps.cache-msys2.outputs.cache-hit != 'true') }}
