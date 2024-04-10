@@ -170,7 +170,7 @@ jobs:
     #- name: Checkout repo
       #uses: actions/checkout@v4
 
-    - name: Setup Msys2
+    - name: Setup MSYS2
       run: |
         Write-host "${{ matrix.build_platform }}"
         Write-host "${{ matrix.build_configuration }}"
@@ -204,6 +204,8 @@ jobs:
 
         if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
         if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
+
+        echo $${{"false"}}
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
@@ -211,7 +213,7 @@ jobs:
           #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
         }
     
-    - name: Cache Msys2
+    - name: Cache MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
       run: |
         echo "Test"
