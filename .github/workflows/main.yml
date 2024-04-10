@@ -183,6 +183,8 @@ jobs:
           
         Write-Output $Env:Path
         Write-Output $Env:MSYSTEM
+        echo "===1"
+        Write-Output "${{ env.MSYSTEM }}"
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
