@@ -194,7 +194,10 @@ jobs:
         Write-Output $MAKE_new
 
         Write-Output $MSYS2_ALLOW_UPDATE
-        Write-Output $MSYS2_ALLOW CACHE
+        Write-Output $MSYS2_ALLOW_CACHE
+
+        Write-Output $Env:MSYS2_ALLOW_UPDATE
+        Write-Output $Env:MSYS2_ALLOW_CACHE        
 
     
     #- name: Make n++ exe
