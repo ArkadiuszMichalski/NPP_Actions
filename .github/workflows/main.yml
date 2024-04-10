@@ -236,6 +236,8 @@ jobs:
         echo $MAKE_new
         echo $Env:GCC_new
         echo $Env:MAKE_new
+        echo ${{ env.GCC_new }}
+        echo ${{ env.MAKE_new }}
 
     #- name: Make n++ exe
       #working-directory: .\
