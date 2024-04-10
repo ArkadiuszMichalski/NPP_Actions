@@ -157,7 +157,7 @@ jobs:
     if: needs.before_build.outputs.result == ''
     env:
       MSYS2_ALLOW_UPDATE: true 
-      MSYS2_ALLOW_CACHE: false
+      MSYS2_ALLOW_CACHE: true
     
     strategy:
       fail-fast: false
@@ -181,8 +181,6 @@ jobs:
         if ( $${{ matrix.build_platform == 'x86_64'}} ) {$Env:Path = 'C:\msys64\mingw64\bin' + [IO.Path]::PathSeparator + $Env:Path; Write-Output "Path=$Env:Path" >> $env:GITHUB_ENV}
         if ( $${{ matrix.build_configuration == 'Debug'}} ) {$Env:DEBUG = '1'}
 
-        $Env:Path = 'AAAAAAAAAAAAA' + [IO.Path]::PathSeparator + $Env:Path
-          
         Write-Output $Env:Path
         Write-Output $Env:MSYSTEM
         echo "===1"
@@ -231,7 +229,7 @@ jobs:
       uses: actions/cache@v4
       with:
         path: ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
-        key: ${{ runner.os }}-msys2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_-GCC_${{ env.MAKE_new }}
+        key: ${{ runner.os }}-MSYS2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_-GCC_${{ env.MAKE_new }}
     
     - name: Update MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && (env.MSYS2_ALLOW_CACHE == 'false' || steps.cache-msys2.outputs.cache-hit != 'true') }}
