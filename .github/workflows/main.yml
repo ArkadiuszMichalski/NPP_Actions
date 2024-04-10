@@ -205,7 +205,7 @@ jobs:
         if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
         if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
         
-        if ($Env:MSYS2_ALLOW_UPDATE == "true") {
+        if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
           #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
           #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
