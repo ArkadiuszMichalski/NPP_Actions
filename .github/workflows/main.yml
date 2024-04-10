@@ -187,9 +187,12 @@ jobs:
           #bash -lc "pacman --noconfirm -Syuu"
           #bash -lc "pacman --noconfirm -Syuu"
 
-          $Env:GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
-          $Env:MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
-      
+          $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
+          $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
+
+          Write-Output "GCC_new=$GCC_new" >> $GITHUB_ENV
+          Write-Output "MAKE_new=$MAKE_new" >> $GITHUB_ENV
+
           #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-gcc")
           #Write-Output (bash -lc "pacman -Ss mingw-w64-i686-make")
   
