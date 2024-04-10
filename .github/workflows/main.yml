@@ -197,7 +197,13 @@ jobs:
         Write-Output $MSYS2_ALLOW_CACHE
 
         Write-Output $Env:MSYS2_ALLOW_UPDATE
-        Write-Output $Env:MSYS2_ALLOW_CACHE        
+        Write-Output $Env:MSYS2_ALLOW_CACHE 
+
+        if ($MSYS2_ALLOW_UPDATE){echo "update OK"}
+        if ($MSYS2_ALLOW_CACHE){echo "cache OK"}
+
+        if ($Env:MSYS2_ALLOW_UPDATE){echo "update OK 2"}
+        if ($Env:MSYS2_ALLOW_CACHE){echo "cache OK 2"}
 
     
     #- name: Make n++ exe
