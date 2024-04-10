@@ -188,9 +188,6 @@ jobs:
         
         if ($Env:MSYS2_ALLOW_UPDATE -eq "true") {
           Write-Output "Update MSYS2 and MAKE"
-          
-          bash -lc "pacman --noconfirm -Syuu"
-          bash -lc "pacman --noconfirm -Syuu"
 
           $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
           $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
@@ -230,6 +227,9 @@ jobs:
       with:
         #path: ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
         path: 'C:\msys64'
+        #path: |
+          #'C:\msys64\usr'
+          #${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
         key: ${{ runner.os }}-MSYS2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-GCC_${{ env.MAKE_new }}
     
     - name: Update MSYS2
@@ -252,7 +252,9 @@ jobs:
         echo "===6"
         Write-Output "${{ env.Path }}"
         echo "===7"
-        
+
+        bash -lc "pacman --noconfirm -Syuu"
+        bash -lc "pacman --noconfirm -Syuu"
         if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
         if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
       
