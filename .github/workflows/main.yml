@@ -236,14 +236,14 @@ jobs:
         #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
     
     - name: Cache MSYS2
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
       #run: |
        #echo "Test"
       id: cache-msys2
       uses: actions/cache@v4
       with:
         #path: ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
-        path: 'D:\msys64.7z'
+        #path: 'D:\msys64.7z'
         #path: |
           #'C:\msys64\usr'
           #${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
@@ -281,6 +281,11 @@ jobs:
         Write-Output "${{ env.Path }}"
         echo "===7"
 
+        cd C:\msys64
+        git init
+        git add .
+        git commit -m"Init repo"
+
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
         if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
@@ -291,9 +296,13 @@ jobs:
         Write-Output (make --version) | select-object -first 1
         Write-Output (sh --version) | select-object -first 1
 
+        git add -A
+        Write-Output (git diff --name-only --staged)
+        
+
     - name: Pack or unpack MSYS2
       #working-directory: C:\msys64
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
           #Write-Output "Copy C:\msys64 to D:\msys64"
           #Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
           #7z a 'D:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
