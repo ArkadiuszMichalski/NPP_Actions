@@ -295,10 +295,12 @@ jobs:
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
       run: |
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
-          Write-Output "Pack msys64"
-          7z a 'D:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
+          Write-Output "Pack D:\msys64"
+          7z a 'D:\msys64.7z' 'D:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'D:\msys64\mingw32\bin' || 'D:\msys64\mingw64\bin' }}
         }
         else{
+          Write-Output "Copy C:\msys64 to D:\msys64"
+          Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
           Write-Output "Unpack msys64"
           7z x 'D:\msys64.7z' -oD:\msys64 -y
         }
