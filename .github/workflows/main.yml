@@ -198,6 +198,8 @@ jobs:
           $GCC_new = (bash -lc "pacman -Ss mingw-w64-i686-gcc") | Select-String -Pattern "-gcc (.*) \(" | %{$_.Matches.Groups[1].value}
           $MAKE_new = (bash -lc "pacman -Ss mingw-w64-i686-make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
 
+          $MAKE_new2 = (bash -lc "pacman -Ss make") | Select-String -Pattern "-make (.*) \(" | %{$_.Matches.Groups[1].value}
+
           Write-Output "GCC_new=$GCC_new" >> $env:GITHUB_ENV
           Write-Output "MAKE_new=$MAKE_new" >> $env:GITHUB_ENV
 
@@ -209,6 +211,7 @@ jobs:
   
           Write-Output $GCC_new
           Write-Output $MAKE_new
+          Write-Output $MAKE_new2
   
           Write-Output $MSYS2_ALLOW_UPDATE
           Write-Output $MSYS2_ALLOW_CACHE
@@ -229,8 +232,8 @@ jobs:
       run: |
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
-        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
+        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc"}
+        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc"}
     
     - name: Cache MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
