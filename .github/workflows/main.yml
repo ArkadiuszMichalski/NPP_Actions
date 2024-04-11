@@ -300,7 +300,7 @@ jobs:
       run: |
         cd C:\msys64
         Write-Output (pwd)
-        Write-Output (dir)
+        #Write-Output (dir)
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
           Write-Output "Pack C:\msys64"
           cd C:\msys64
