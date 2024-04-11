@@ -294,7 +294,7 @@ jobs:
     - name: Pack or unpack MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
       run: |
-        if ($${{ steps.cache-msys2.outputs.cache-hit != 'true') }}){
+        if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
           Write-Output "Pack msys64"
           7zip a 'C:\msys64.7z' 'C:\msys64'
         }
