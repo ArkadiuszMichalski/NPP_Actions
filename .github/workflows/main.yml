@@ -232,8 +232,8 @@ jobs:
       run: |
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
-        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc"}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc"}
+        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S make"}
+        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
     
     - name: Cache MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
