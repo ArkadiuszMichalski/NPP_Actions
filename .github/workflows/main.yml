@@ -296,11 +296,11 @@ jobs:
       run: |
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
           Write-Output "Pack msys64"
-          7zip a 'C:\msys64.7z' 'C:\msys64'
+          7z a 'C:\msys64.7z' 'C:\msys64'
         }
         else{
           Write-Output "Unpack msys64"
-          7zip x 'C:\msys64.7z' -oC:\msys64 -y
+          7z x 'C:\msys64.7z' -oC:\msys64
         }
 
     #- name: Make n++ exe
