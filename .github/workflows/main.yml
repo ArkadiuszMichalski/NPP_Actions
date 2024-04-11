@@ -292,6 +292,7 @@ jobs:
         Write-Output (sh --version) | select-object -first 1
 
     - name: Pack or unpack MSYS2
+      working-directory: C:\msys64
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
           #Write-Output "Copy C:\msys64 to D:\msys64"
           #Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
@@ -303,7 +304,7 @@ jobs:
           Write-Output "Pack C:\msys64"
           cd C:\msys64
           Write-Output (pwd)
-          7z a 'D:\msys64.7z' -x!'clang32' -x!'clang64' -x!'clangarm64' -x!'ucrt64' -x!"${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }}"
+          7z a 'D:\msys64.7z' -x!'clang32' -x!'clang64' -x!'clangarm64' -x!'ucrt64' -x!"${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }}" -x!'usr' -x!'mingw64' -x!'i686'
         }
         else{
           Write-Output "Unpack D:\msys64"
