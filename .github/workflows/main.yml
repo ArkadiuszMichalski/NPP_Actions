@@ -283,7 +283,10 @@ jobs:
 
         cd C:\msys64
         git init
-        git add .
+        git config user.email "you@example.com"
+        git config user.name "Your Name"
+        
+        git add . | Out-Null
         git commit -m"Init repo"
 
         bash -lc "pacman --noconfirm -Syuu"
