@@ -286,9 +286,9 @@ jobs:
         git config user.email "you@example.com"
         git config user.name "Your Name"
         
-        git add . | Out-Null
-        git commit -m"Init repo"  | Out-Null
-
+        git add . *> $null
+        git commit -m"Init repo"
+        
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
         if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
