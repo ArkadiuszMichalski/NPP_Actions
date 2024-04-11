@@ -287,7 +287,7 @@ jobs:
         git config user.name "Your Name"
         
         git add . | Out-Null
-        git commit -m"Init repo"
+        git commit -m"Init repo"  | Out-Null
 
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
