@@ -300,15 +300,17 @@ jobs:
       run: |
         cd C:\msys64
         Write-Output (pwd)
+        Write-Output (dir)
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
           Write-Output "Pack C:\msys64"
           cd C:\msys64
           Write-Output (pwd)
-          7z a 'D:\msys64.7z' -x!'clang32' -x!'clang64' -x!'clangarm64' -x!'ucrt64' -x!"${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }}" -x!'usr' -x!'mingw64' -x!'i686'
+          7z a 'D:\msys64.7z' -x!'clang32' -x!'clang64' -x!'clangarm64' -x!'ucrt64' -x!"${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }}"
         }
         else{
           Write-Output "Unpack D:\msys64"
           7z x 'D:\msys64.7z' -oD:\msys64 -y
+          cd C:\msys64
         }
 
     #- name: Make n++ exe
