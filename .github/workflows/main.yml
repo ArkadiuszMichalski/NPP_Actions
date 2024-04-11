@@ -299,7 +299,7 @@ jobs:
         Write-Output (make --version) | select-object -first 1
         Write-Output (sh --version) | select-object -first 1
 
-        git add -A
+        git add -A *> $null
         Write-Output (git diff --name-only --staged)
         
 
