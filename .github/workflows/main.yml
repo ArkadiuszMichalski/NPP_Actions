@@ -236,7 +236,7 @@ jobs:
         #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
     
     - name: Cache MSYS2
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
       #run: |
        #echo "Test"
       id: cache-msys2
@@ -244,8 +244,9 @@ jobs:
       with:
         #path: ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
         #path: 'D:\msys64.7z'
-        #path: |
+        path: |
           #'C:\msys64\usr'
+          'C:\msys64\var\cache'
           #${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
         key: ${{ runner.os }}-MSYS2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_${{ env.MAKE_new }}
 
@@ -281,13 +282,13 @@ jobs:
         Write-Output "${{ env.Path }}"
         echo "===7"
 
-        cd C:\msys64
-        git init
-        git config user.email "you@example.com"
-        git config user.name "Your Name"
+        #cd C:\msys64
+        #git init
+        #git config user.email "you@example.com"
+        #git config user.name "Your Name"
         
-        git add . *> $null
-        git commit -m"Init repo" *> $null
+        #git add . *> $null
+        #git commit -m"Init repo" *> $null
         
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
@@ -299,8 +300,8 @@ jobs:
         Write-Output (make --version) | select-object -first 1
         Write-Output (sh --version) | select-object -first 1
 
-        git add -A *> $null
-        Write-Output (git diff --name-only --staged)
+        #git add -A *> $null
+        #Write-Output (git diff --name-only --staged)
         
 
     - name: Pack or unpack MSYS2
