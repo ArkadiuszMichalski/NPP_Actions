@@ -292,7 +292,7 @@ jobs:
         Write-Output (sh --version) | select-object -first 1
 
     - name: Pack or unpack MSYS2
-      working-directory: C:\msys64
+      #working-directory: C:\msys64
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
           #Write-Output "Copy C:\msys64 to D:\msys64"
           #Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
@@ -314,6 +314,7 @@ jobs:
           cd D:\msys64
           Write-Output (pwd)
           Write-Output (dir)
+          Write-Output (7z l 'D:\msys64.7z')
         }
 
     #- name: Make n++ exe
