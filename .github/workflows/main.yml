@@ -299,7 +299,7 @@ jobs:
       run: |
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
           Write-Output "Pack C:\msys64"
-          7z a 'D:\msys64.7z' 'C:\msys64' -xC:\msys64\clang32 -xC:\msys64\clang64 -xC:\msys64\clang64 -xC:\msys64\clangarm64 -xC:\msys64\ucrt64 -x${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw64' || 'C:\msys64\mingw32' }}
+          7z a 'D:\msys64.7z' 'C:\msys64' -xC:\msys64\clang32 -xC:\msys64\clang64 -xC:\msys64\clangarm64 -xC:\msys64\ucrt64 -x${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw64' || 'C:\msys64\mingw32' }} -spf
         }
         else{
           Write-Output "Unpack D:\msys64"
