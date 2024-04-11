@@ -296,7 +296,7 @@ jobs:
       run: |
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
           Write-Output "Pack msys64"
-          7z a 'C:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
+          7z a 'C:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }} -y
         }
         else{
           Write-Output "Unpack msys64"
