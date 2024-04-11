@@ -228,12 +228,12 @@ jobs:
         }
 
 
-    - name: Update MSYS2
-      run: |
-        bash -lc "pacman --noconfirm -Syuu"
-        bash -lc "pacman --noconfirm -Syuu"
-        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S make"}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
+    #- name: Update MSYS2
+      #run: |
+        #bash -lc "pacman --noconfirm -Syuu"
+        #bash -lc "pacman --noconfirm -Syuu"
+        #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S make"}
+        #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
     
     - name: Cache MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
@@ -243,7 +243,7 @@ jobs:
       uses: actions/cache@v4
       with:
         #path: ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
-        path: 'C:\msys64'
+        path: 'C:\msys64.7z'
         #path: |
           #'C:\msys64\usr'
           #${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
@@ -259,7 +259,7 @@ jobs:
         Write-Output (where.exe gcc)
         Write-Output (where.exe make)
         Write-Output (where.exe sh)
-
+    
     - name: Update MSYS2
       if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && (env.MSYS2_ALLOW_CACHE == 'false' || steps.cache-msys2.outputs.cache-hit != 'true') }}
       run: |
@@ -291,6 +291,17 @@ jobs:
         Write-Output (make --version) | select-object -first 1
         Write-Output (sh --version) | select-object -first 1
 
+    - name: Pack or unpack MSYS2
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
+      run: |
+        if ($${{ steps.cache-msys2.outputs.cache-hit != 'true') }}){
+          Write-Output "Pack msys64"
+          7zip a 'C:\msys64.7z' 'C:\msys64'
+        }
+        else{
+          Write-Output "Unpack msys64"
+          7zip x 'C:\msys64.7z' -oC:\msys64 -y
+        }
 
     #- name: Make n++ exe
       #working-directory: .\
