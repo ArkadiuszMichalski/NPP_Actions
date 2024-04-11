@@ -310,7 +310,9 @@ jobs:
         else{
           Write-Output "Unpack D:\msys64"
           7z x 'D:\msys64.7z' -oD:\msys64 -y
-          cd C:\msys64
+          cd D:\msys64
+          Write-Output (pwd)
+          Write-Output (dir)
         }
 
     #- name: Make n++ exe
