@@ -247,7 +247,7 @@ jobs:
         #'C:\msys64\usr'
         #path: |
           #'C:\msys64\var'
-        path: 'C:\msys64\var'
+        path: 'C:\msys64\var\cache'
         key: ${{ runner.os }}-MSYS2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_${{ env.MAKE_new }}
 
     - name: Check MSYS2 tools version
