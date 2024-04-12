@@ -33,7 +33,7 @@ jobs:
         @(Invoke-RestMethod https://pypi.org/pypi/rfc3987/json)
         @(Invoke-RestMethod https://pypi.org/pypi/pywin32/json)
         @(Invoke-RestMethod https://pypi.org/pypi/lxml/json)
-    
+     
     - name: Commmit filtering
       id: filter
       run: |
