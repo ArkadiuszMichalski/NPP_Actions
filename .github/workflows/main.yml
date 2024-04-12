@@ -19,6 +19,20 @@ jobs:
     
     - name: Python test
       run: python -m pip install requests rfc3987 pywin32 lxml
+
+    - name: Python version PIP
+      run: |
+        pip index versions requests
+        pip index versions rfc3987
+        pip index versions pywin32
+        pip index versions lxml
+
+    - name: Python version JSON
+      run: |
+        @(Invoke-RestMethod https://pypi.org/pypi/requests/json)
+        @(Invoke-RestMethod https://pypi.org/pypi/rfc3987/json)
+        @(Invoke-RestMethod https://pypi.org/pypi/pywin32/json)
+        @(Invoke-RestMethod https://pypi.org/pypi/lxml/json)
     
     - name: Commmit filtering
       id: filter
