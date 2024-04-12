@@ -227,6 +227,14 @@ jobs:
 
         }
 
+    - name: Use msys2/setup-msys2@v2
+      uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        msystem: ${{ matrix.build_platform == 'i686' && 'MINGW32' || 'MINGW64' }}
+        install: 
+          mingw-w64-${{ matrix.build_platform }}-gcc 
+          mingw-w64-${{ matrix.build_platform }}-make
 
     #- name: Update MSYS2
       #run: |
@@ -236,7 +244,7 @@ jobs:
         #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
     
     - name: Cache MSYS2
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true'}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
       #run: |
        #echo "Test"
       id: cache-msys2
@@ -262,7 +270,7 @@ jobs:
         Write-Output (where.exe sh)
     
     - name: Update MSYS2
-      #if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && (env.MSYS2_ALLOW_CACHE == 'false' || steps.cache-msys2.outputs.cache-hit != 'true') }}
+      #if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && (env.MSYS2_ALLOW_CACHE == 'false' || steps.cache-msys2.outputs.cache-hit != 'true') && 0 }}
       run: |
         echo $GCC_new
         echo $MAKE_new
