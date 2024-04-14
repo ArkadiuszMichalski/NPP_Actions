@@ -19,7 +19,7 @@ jobs:
     
     - name: Python test
       run: |
-        $commit_message = [Regex]::Escape("${{ github.event.head_commit.message }}")
+        $commit_message = (git show -s --format=%s)
         echo $commit_message  
         python -m pip install requests rfc3987 pywin32 lxml
 
