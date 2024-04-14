@@ -20,7 +20,10 @@ jobs:
     - name: Python test
       run: |
         $commit_message = (git show -s --format=%B HEAD)
-        echo $commit_message  
+        echo $commit_message
+
+        throw 1
+        
         python -m pip install requests rfc3987 pywin32 lxml
 
     - name: Python version PIP
