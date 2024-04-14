@@ -18,7 +18,7 @@ jobs:
         fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
     
     - name: Python test
-      run: |
+      run: | 
         $commit_message = (git show -s --format=%B HEAD)
         echo $commit_message  
         python -m pip install requests rfc3987 pywin32 lxml
