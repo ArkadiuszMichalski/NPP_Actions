@@ -18,12 +18,12 @@ jobs:
         fetch-depth: ${{ github.event_name == 'pull_request' && 2 || 0 }}
     
     - name: Python test
+      $commit_message = "${{ github.event.head_commit.message }}".Replace("`"", "`"") 
+      echo $commit_message
       run: python -m pip install requests rfc3987 pywin32 lxml
 
     - name: Python version PIP
       run: |
-        $commit_message = "${{ github.event.head_commit.message }}".Replace("`"", "`"") 
-        echo $commit_message
         pip index versions requests
         pip index versions rfc3987
         pip index versions pywin32
