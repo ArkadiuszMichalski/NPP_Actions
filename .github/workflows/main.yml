@@ -19,7 +19,7 @@ jobs:
     
     - name: Python test
       run: |
-        $commit_message = "$(git show -s --format=%B)"
+        $commit_message = (git show -s --format=%B)
         echo $commit_message  
         python -m pip install requests rfc3987 pywin32 lxml
 
