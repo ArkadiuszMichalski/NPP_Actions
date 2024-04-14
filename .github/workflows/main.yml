@@ -19,7 +19,7 @@ jobs:
     
     - name: Python test
       run: |
-        $commit_message = ${{ toJSON(github.event.head_commit.message) }}
+        $commit_message =  [System.Text.RegularExpressions.Regex]::Escape(${{ github.event.head_commit.message }})
         echo $commit_message  
         python -m pip install requests rfc3987 pywin32 lxml
 
