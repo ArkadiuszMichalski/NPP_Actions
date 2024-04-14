@@ -55,7 +55,7 @@ jobs:
         echo $isMaster
         
         if ($isPush) {
-          $commit_message = (git show -s --format=%B)
+          $commit_message = "(git show -s --format=%B)"
         }
         else {
           $last_commit = @(Invoke-RestMethod ${{ github.event.pull_request._links.commits.href }})[0]  | Select-Object -Last 1
