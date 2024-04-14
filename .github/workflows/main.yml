@@ -22,6 +22,8 @@ jobs:
 
     - name: Python version PIP
       run: |
+        $commit_message = "${{ github.event.head_commit.message }}".Replace("`"", "`"") 
+        echo $commit_message
         pip index versions requests
         pip index versions rfc3987
         pip index versions pywin32
