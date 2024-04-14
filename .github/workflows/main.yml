@@ -52,7 +52,7 @@ jobs:
         echo $isMaster
         
         if ($isPush) {
-          $commit_message = "${{ github.event.head_commit.message }}"
+          $commit_message = "${{ github.event.head_commit.message }}" 
         }
         else {
           $last_commit = @(Invoke-RestMethod ${{ github.event.pull_request._links.commits.href }})[0]  | Select-Object -Last 1
