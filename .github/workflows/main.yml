@@ -20,7 +20,9 @@ jobs:
     - name: Python test
       run: |
         #$commit_message = (git show -s --format=%B)  
-        #echo $commit_message  
+        #echo $commit_message
+
+        $PYTHONPATH="D:\.python"
 
         Write-Output $Env:PYTHONPATH
         echo "===1"
