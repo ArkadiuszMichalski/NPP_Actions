@@ -14,7 +14,9 @@ jobs:
     steps:
 
     - name: PWD
-      run: Write-Output (pwd)
+      run: |
+        Write-Output (pwd)
+        Write-Output (Get-ChildItem -Path D:\ -Directory | Select-Object FullName)
     
     - name: Checkout repo
       uses: actions/checkout@v4
