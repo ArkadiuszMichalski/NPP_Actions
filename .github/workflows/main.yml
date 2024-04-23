@@ -15,7 +15,8 @@ jobs:
 
     - name: PWD
       run: |
-        Write-Output @(Invoke-RestMethod https://pypi.org/pypi/requests/json).info.version
+        Write-Output ((python -V) -split " ")[1]
+        Write-Output (Invoke-RestMethod https://pypi.org/pypi/requests/json).info.version
         Exit
         Write-Output (pwd)
         #Write-Output (Get-ChildItem -Path C:\ -Directory | Select-Object FullName)
