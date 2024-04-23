@@ -19,9 +19,21 @@ jobs:
     
     - name: Python test
       run: |
-        $commit_message = (git show -s --format=%B)  
-        echo $commit_message  
-        python -m pip install requests rfc3987 pywin32 lxml
+        #$commit_message = (git show -s --format=%B)  
+        #echo $commit_message  
+
+        Write-Output $Env:PYTHONPATH
+        echo "===1"
+        Write-Output $PYTHONPATH
+        echo "===1"
+        Write-Output (pip config list)
+        Write-Output (pip cache dir)
+        Write-Output (where python)
+        Write-Output (where pip)
+        
+        throw "1"
+        
+        #python -m pip install requests rfc3987 pywin32 lxml
 
     - name: Python version PIP
       run: |
