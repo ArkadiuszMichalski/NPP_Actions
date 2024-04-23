@@ -22,7 +22,7 @@ jobs:
         #$commit_message = (git show -s --format=%B)  
         #echo $commit_message
 
-        $Env:$PYTHONPATH="D:\.python"
+        $Env:PYTHONPATH="D:\.python"
 
         Write-Output $Env:PYTHONPATH
         echo "===1"
