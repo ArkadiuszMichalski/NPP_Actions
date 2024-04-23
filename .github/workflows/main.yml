@@ -25,11 +25,16 @@ jobs:
         Write-Output $Env:PYTHONPATH
         echo "===1"
         Write-Output $PYTHONPATH
-        echo "===1"
+        echo "===2"
         Write-Output (pip config list)
+        echo "===3"
         Write-Output (pip cache dir)
-        Write-Output (where python)
-        Write-Output (where pip)
+        echo "===4"
+        Write-Output (where.exe python)
+        echo "===5"
+        Write-Output (where.exe pip)
+        echo "===6"
+        Write-Output (python -c "import sys; print(sys.path)")
         
         throw "1"
         
