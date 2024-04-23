@@ -22,6 +22,8 @@ jobs:
         #$commit_message = (git show -s --format=%B)  
         #echo $commit_message
 
+        Write-Output (pwd)
+
         $Env:PYTHONPATH="D:\.python"
 
         Write-Output $Env:PYTHONPATH
