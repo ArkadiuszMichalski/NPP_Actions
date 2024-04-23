@@ -12,6 +12,10 @@ jobs:
       matrix: ${{ steps.filter.outputs.matrix }}
 
     steps:
+
+    - name: PWD
+      run: Write-Output (pwd)
+    
     - name: Checkout repo
       uses: actions/checkout@v4
       with:
@@ -22,7 +26,7 @@ jobs:
         #$commit_message = (git show -s --format=%B)  
         #echo $commit_message
 
-        Write-Output (pwd)
+        
 
         $Env:PYTHONPATH="D:\.python"
 
