@@ -17,7 +17,7 @@ jobs:
 
     - name: PWD
       run: |
-        if ($Env:PYTHON_ALLOW_CACHE){echo "OK"}
+        if ($Env:PYTHON_ALLOW_CACHE -eq "true"){echo "OK"}
       
         $python = ((python -V) -split " ")[1]
         $requests = (Invoke-RestMethod https://pypi.org/pypi/requests/json).info.version
