@@ -1,6 +1,8 @@
 name: CI_build
 
 on: [push, pull_request]
+env:
+  PYTHON_ALLOW_CACHE: true
 
 jobs:
   
@@ -15,6 +17,8 @@ jobs:
 
     - name: PWD
       run: |
+        if ($Env:PYTHON_ALLOW_CACHE){echo "OK"}
+      
         $python = ((python -V) -split " ")[1]
         $requests = (Invoke-RestMethod https://pypi.org/pypi/requests/json).info.version
         $rfc3987 = (Invoke-RestMethod https://pypi.org/pypi/rfc3987/json).info.version
