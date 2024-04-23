@@ -15,8 +15,12 @@ jobs:
 
     - name: PWD
       run: |
-        Write-Output ((python -V) -split " ")[1]
-        Write-Output (Invoke-RestMethod https://pypi.org/pypi/requests/json).info.version
+        $python = ((python -V) -split " ")[1]
+        $requests = (Invoke-RestMethod https://pypi.org/pypi/requests/json).info.version
+        $rfc3987 = (Invoke-RestMethod https://pypi.org/pypi/rfc3987/json).info.version
+        $pywin32 = (Invoke-RestMethod https://pypi.org/pypi/pywin32/json).info.version
+        $lxml = (Invoke-RestMethod https://pypi.org/pypi/lxml/json).info.version
+        Write-Output "python=python_$python-rfc3987_$rfc3987-pywin32_$pywin32-lxml_$lxml"
         Exit
         Write-Output (pwd)
         #Write-Output (Get-ChildItem -Path C:\ -Directory | Select-Object FullName)
