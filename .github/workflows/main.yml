@@ -17,7 +17,7 @@ jobs:
       run: |
         Write-Output (pwd)
         #Write-Output (Get-ChildItem -Path C:\ -Directory | Select-Object FullName)
-        Write-Output (Get-ChildItem -Path D:\ -Recurse -–File -Force -ErrorAction SilentlyContinue | Select-Object FullName)
+        Write-Output (Get-ChildItem -Path D:\ -Recurse -File -Force -ErrorAction SilentlyContinue | Select-Object FullName)
     
     - name: Checkout repo
       uses: actions/checkout@v4
