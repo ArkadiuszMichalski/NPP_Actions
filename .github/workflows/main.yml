@@ -20,7 +20,7 @@ jobs:
       run: |
 
         echo ${{ hashFiles('.\lexilla', '.\scintilla') }}
-        Exit
+        Exit 1
         echo ${{ toJson(github) }}
         if ($Env:PYTHON_ALLOW_CACHE -eq "true"){echo "OK"}
 
