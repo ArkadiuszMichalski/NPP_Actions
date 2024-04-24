@@ -42,7 +42,8 @@ jobs:
         #$commit_message = (git show -s --format=%B)  
         #echo $commit_message
 
-        Write-Output "${{ hashFiles('scintilla', 'lexilla') }}"
+        Write-Output "${{ hashFiles('BUILD.md') }}"
+        Write-Output "${{ hashFiles('.\BUILD.md') }}"
 
         Exit 1
         
