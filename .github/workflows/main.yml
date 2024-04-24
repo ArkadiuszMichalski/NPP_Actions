@@ -16,12 +16,11 @@ jobs:
     steps:
 
     - name: PWD
-      if: contains('[force nopythoncache] test', '[force nopythoncache]')
+      if: !contains('[force nopythoncache] test', '[force nopythoncache]')
       run: |
 
         echo ${{ hashFiles('.\lexilla', '.\scintilla') }}
-        Exit 1
-        echo ${{ toJson(github) }}
+        Exit
         if ($Env:PYTHON_ALLOW_CACHE -eq "true"){echo "OK"}
 
       
