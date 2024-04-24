@@ -42,8 +42,10 @@ jobs:
         #$commit_message = (git show -s --format=%B)  
         #echo $commit_message
 
+        Write-Output (pwd)
         Write-Output "${{ hashFiles('BUILD.md') }}"
         Write-Output "${{ hashFiles('.\BUILD.md') }}"
+        Write-Output "aaaaaaa"
 
         Exit 1
         
