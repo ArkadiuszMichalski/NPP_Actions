@@ -16,7 +16,7 @@ jobs:
     steps:
 
     - name: PWD
-      if: !contains('[force nopythoncache] test', '[force nopythoncache]')
+      if: contains('[force nopythoncache] test', '[force nopythoncache]') != 'true'
       run: |
 
         echo ${{ hashFiles('.\lexilla', '.\scintilla') }}
