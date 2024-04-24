@@ -43,9 +43,7 @@ jobs:
         #echo $commit_message
 
         Write-Output (pwd)
-        Write-Output "${{ hashFiles('BUILD.md') }}"
-        Write-Output "${{ hashFiles('.\BUILD.md') }}"
-        Write-Output "aaaaaaa"
+        Write-Output "${{ hashFiles('README.md') }}"
 
         Exit 1
         
