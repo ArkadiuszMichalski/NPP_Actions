@@ -19,7 +19,7 @@ jobs:
       if: contains('[force nopythoncache] test', '[force nopythoncache]')
       run: |
 
-        echo ${{ hashFiles('.\lexilla', `.\scintilla`) }}
+        echo ${{ hashFiles('.\lexilla', '.\scintilla') }}
         Exit
         echo ${{ toJson(github) }}
         if ($Env:PYTHON_ALLOW_CACHE -eq "true"){echo "OK"}
