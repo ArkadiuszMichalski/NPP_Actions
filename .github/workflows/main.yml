@@ -18,9 +18,9 @@ jobs:
     - name: PWD
       run: |
 
-        Write-Output "${{ hashFiles('.\lexilla\*', '.\scintilla\*') }}"
+        Write-Output "${{ hashFiles('BUILD.md') }}"
         
-        Exit
+        Exit 1
         
         if ($Env:PYTHON_ALLOW_CACHE -eq "true"){echo "OK"}
 
