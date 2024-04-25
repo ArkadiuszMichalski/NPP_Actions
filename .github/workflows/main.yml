@@ -7,7 +7,7 @@ env:
 jobs:
   
   before_build:
-  
+    if: false
     runs-on: windows-latest
     outputs:
       result: ${{ steps.filter.outputs.result }}
@@ -46,10 +46,7 @@ jobs:
         Write-Output "${{ hashFiles('README.md') }}"
 
         Exit 1
-        
-
-        
-
+    
         $Env:PYTHONPATH="D:\.python"
 
         Write-Output $Env:PYTHONPATH
@@ -167,7 +164,7 @@ jobs:
   matrix:
   
     needs: before_build
-    if: needs.before_build.outputs.result == '' || needs.before_build.outputs.result == 'ONEJOB'
+    if: (needs.before_build.outputs.result == '' || needs.before_build.outputs.result == 'ONEJOB') && 0
     runs-on: windows-latest
     strategy:
       fail-fast: false
@@ -324,7 +321,7 @@ jobs:
         #'C:\msys64\usr'
         #path: |
           #'C:\msys64\var'
-        path: 'C:\msys64\var\cache'
+        path: 'D:\msys64.7z'
         key: ${{ runner.os }}-MSYS2-${{ matrix.build_platform }}-GCC_${{ env.GCC_new }}-MAKE_${{ env.MAKE_new }}
 
     - name: Check MSYS2 tools version
@@ -383,7 +380,7 @@ jobs:
 
     - name: Pack or unpack MSYS2
       #working-directory: C:\msys64
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 1}}
           #Write-Output "Copy C:\msys64 to D:\msys64"
           #Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
           #7z a 'D:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
