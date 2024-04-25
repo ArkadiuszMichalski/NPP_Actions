@@ -393,7 +393,7 @@ jobs:
           Write-Output "Pack C:\msys64"
           cd C:\msys64
           Write-Output (pwd)
-          7z a 'D:\msys64.7z' -x!clang32 -x!clang64 -x!clangarm64 -x!ucrt64 -x!${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }} -mfb=64 -md=1024m
+          7z a 'D:\msys64.7z' -x!clang32 -x!clang64 -x!clangarm64 -x!ucrt64 -x!${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }} -mfb=64 -md=1024m -ms=on
           #Write-Output (7z l 'D:\msys64.7z')  
         }
         else{
