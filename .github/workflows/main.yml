@@ -311,7 +311,7 @@ jobs:
         #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S make"}
     
     - name: Cache MSYS2
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 1}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
       #run: |
        #echo "Test"
       id: cache-msys2
@@ -376,6 +376,7 @@ jobs:
         Write-Output (ccache --version)
         Write-Output (where.exe ccache)
         echo "===1"
+        Write-Output (ccache -p)
         Write-Output (ccache -s)
       
         Write-Output "Tools version:"
@@ -389,7 +390,7 @@ jobs:
 
     - name: Pack or unpack MSYS2
       #working-directory: C:\msys64
-      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 1}}
+      if: ${{ env.MSYS2_ALLOW_UPDATE == 'true' && env.MSYS2_ALLOW_CACHE == 'true' && 0}}
           #Write-Output "Copy C:\msys64 to D:\msys64"
           #Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
           #7z a 'D:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
