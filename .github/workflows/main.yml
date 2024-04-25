@@ -391,8 +391,8 @@ jobs:
           Write-Output "Pack C:\msys64"
           cd C:\msys64
           Write-Output (pwd)
-          7z a 'D:\msys64.7z' -x!clang32 -x!clang64 -x!clangarm64 -x!ucrt64 -x!${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }} -mx9
-          Write-Output (7z l 'D:\msys64.7z')
+          7z a 'D:\msys64.7z' -x!clang32 -x!clang64 -x!clangarm64 -x!ucrt64 -x!${{ matrix.build_platform == 'i686' && 'mingw64' || 'mingw32' }} -m0=PPMd -mx9
+          #Write-Output (7z l 'D:\msys64.7z')
         }
         else{
           Write-Output "Unpack D:\msys64"
@@ -400,7 +400,7 @@ jobs:
           cd D:\msys64
           Write-Output (pwd)
           Write-Output (dir)
-          Write-Output (7z l 'D:\msys64.7z')
+          #Write-Output (7z l 'D:\msys64.7z')
         }
 
     #- name: Make n++ exe
