@@ -378,6 +378,9 @@ jobs:
         echo "===1"
         Write-Output (ccache -p)
         Write-Output (ccache -s)
+
+        $CCACHE_DIR = "D:\ccache"
+        Write-Output (ccache -p)
       
         Write-Output "Tools version:"
         Write-Output (((gcc --version) | select-object -first 1) + " " + (gcc -dumpmachine))
