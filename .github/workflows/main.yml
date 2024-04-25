@@ -62,7 +62,7 @@ jobs:
         echo "===6"
         Write-Output (python -c "import sys; print(sys.path)")
         
-        throw "1"
+        #throw "1"
         
         #python -m pip install requests rfc3987 pywin32 lxml
 
