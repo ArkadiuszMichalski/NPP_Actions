@@ -367,8 +367,16 @@ jobs:
         
         bash -lc "pacman --noconfirm -Syuu"
         bash -lc "pacman --noconfirm -Syuu"
-        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
-        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
+        #if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-gcc mingw-w64-i686-make"}
+        #if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-gcc mingw-w64-x86_64-make"}
+
+        if ( $${{ matrix.build_platform == 'i686'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-i686-ccache"}
+        if ( $${{ matrix.build_platform == 'x86_64'}} ) {bash -lc "pacman --noconfirm -S mingw-w64-x86_64-ccache"}
+
+        Write-Output (ccache --version)
+        Write-Output (where.exe ccache)
+        echo "===1"
+        Write-Output (ccache -s)
       
         Write-Output "Tools version:"
         Write-Output (((gcc --version) | select-object -first 1) + " " + (gcc -dumpmachine))
