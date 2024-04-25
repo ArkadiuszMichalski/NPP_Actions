@@ -12,7 +12,7 @@ jobs:
       result: ${{ steps.filter.outputs.result }}
       matrix: ${{ steps.filter.outputs.matrix }}
 
-    steps:
+    steps: 
 
     - name: PWD
       run: |
