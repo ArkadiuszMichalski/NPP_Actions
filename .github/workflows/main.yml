@@ -377,10 +377,10 @@ jobs:
         Write-Output (where.exe ccache)
         echo "====1"
         Write-Output (ccache -s)
-        echo ""====2"
+        echo "====2"
         Write-Output (ccache -p)
 
-        echo ""====3"
+        echo "====3"
         $Env:CCACHE_DIR = "D:\ccache"
         Write-Output (ccache -p)
       
