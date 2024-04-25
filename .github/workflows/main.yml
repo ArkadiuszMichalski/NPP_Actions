@@ -379,7 +379,7 @@ jobs:
         Write-Output (ccache -p)
         Write-Output (ccache -s)
 
-        $CCACHE_DIR = "D:\ccache"
+        $Env:CCACHE_DIR = "D:\ccache"
         Write-Output (ccache -p)
       
         Write-Output "Tools version:"
