@@ -384,7 +384,7 @@ jobs:
           #Copy-Item -Path "C:\msys64" -Destination "D:\msys64" -Recurse
           #7z a 'D:\msys64.7z' 'C:\msys64\usr' ${{ matrix.build_platform == 'i686' && 'C:\msys64\mingw32\bin' || 'C:\msys64\mingw64\bin' }}
       run: |
-        cd C:\msys64
+        cd C:\msys64 
         Write-Output (pwd)
         #Write-Output (dir)
         if ($${{ steps.cache-msys2.outputs.cache-hit != 'true' }}){
