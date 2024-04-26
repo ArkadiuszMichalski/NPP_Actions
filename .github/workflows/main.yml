@@ -17,7 +17,7 @@ jobs:
     - name: PWD
       run: |
 
-        Write-Output (pip install lxml==)
+        Write-Output (python -m pip install lxml --dry-run --python-version 3.9 --no-dep)
         Exit 1 
 
         Write-Output (where.exe ccache)
