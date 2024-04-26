@@ -17,6 +17,9 @@ jobs:
     - name: PWD
       run: |
 
+        Write-Output (pip index versions requests)
+        Write-Output (pip index versions rfc3987)
+        Write-Output (pip index versions pywin32)
         Write-Output (pip index versions lxml)
         Exit 1 
 
