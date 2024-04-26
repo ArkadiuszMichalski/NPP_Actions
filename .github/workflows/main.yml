@@ -16,7 +16,9 @@ jobs:
 
     - name: PWD
       run: |
-        #Exit 1 
+
+        Write-Output (pip install lxml==)
+        Exit 1 
 
         Write-Output (where.exe ccache)
         #Write-Output (ccache --version)
