@@ -17,10 +17,10 @@ jobs:
     - name: PWD
       run: |
 
-        Write-Output (pip index versions requests)
-        Write-Output (pip index versions rfc3987)
-        Write-Output (pip index versions pywin32)
-        Write-Output (pip index versions lxml)
+        Write-Output (pip index versions requests rfc3987 pywin32) lxml
+        #Write-Output (pip index versions rfc3987)
+        #Write-Output (pip index versions pywin32)
+        #Write-Output (pip index versions lxml)
         Exit 1 
 
         Write-Output (where.exe ccache)
