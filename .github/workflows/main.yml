@@ -18,6 +18,10 @@ jobs:
       run: |
 
         $result = (Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip)
+        cd D:\ccache
+        Write-Output (pwd)
+        Write-Output (dir)
+
 
         Write-Output ($result)
         echo "===1"
