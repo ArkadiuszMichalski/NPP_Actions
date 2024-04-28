@@ -30,7 +30,7 @@ jobs:
         
         Write-Output ($result)
         echo "===1"
-        Write-Output ${{ hashFiles(D:\ccache.zip) }}
+        Write-Output ${{ hashFiles('D:\ccache.zip') }}
         echo "===1"
         Exit 1
         
