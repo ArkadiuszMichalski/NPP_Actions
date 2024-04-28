@@ -19,9 +19,9 @@ jobs:
 
         $ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
         Write-Output $ccache_num
-        Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip
+        Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\.cache\ccache.zip
         Write-Output "Unpack D:\ccache.zip"
-        7z x 'D:\ccache.zip' -oD:\ccache -y
+        7z e 'D:\ccache.zip' -oD:\ccache -y
         cd D:\ccache
         Write-Output (pwd)
         Write-Output (dir)
