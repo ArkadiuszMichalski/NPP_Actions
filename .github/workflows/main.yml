@@ -19,8 +19,12 @@ jobs:
 
         echo ${{ secrets.GITHUB_TOKEN }}
 
-        $ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
+        #$ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
+        
+        $ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest -Headers @{"Authorization"="token ${{ secrets.GITHUB_TOKEN }}"}) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
         Write-Output $ccache_num
+        Exit 1
+        
         Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip
         Write-Output "Unpack D:\ccache.zip"
         7z e 'D:\ccache.zip' -oD:\.cache\ccache\bin -y
