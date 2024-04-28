@@ -21,7 +21,7 @@ jobs:
 
         #$result = (Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip)
 
-        Write-Output (Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip).headers
+        Write-Output (Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip).headers.Content-MD5
 
         cd D:\
         Write-Output (pwd)
