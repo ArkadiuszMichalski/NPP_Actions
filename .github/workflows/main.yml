@@ -29,11 +29,10 @@ jobs:
         Write-Output (dir)
         
         Write-Output ($result)
+        Write-Output (([System.Convert]::FromBase64String($result) | Format-Hex).HexBytes)
         echo "===1"
         Write-Output (Get-FileHash D:\ccache.zip -Algorithm MD5).Hash
         echo "===1"
-        7z e 'D:\ccache.zip' -oD:\.cache\ccache\bin -y
-        Write-Output (Get-FileHash 'D:\.cache\ccache\bin' -Algorithm MD5).Hash
         Exit 1
         
 
