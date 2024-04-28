@@ -22,7 +22,7 @@ jobs:
         Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip
         Write-Output "Unpack D:\ccache.zip"
         7z x 'D:\ccache.zip' -oD:\ccache -y
-        cd D:\cache
+        cd D:\ccache
         Write-Output (pwd)
         Write-Output (dir)
         Write-Output (7z l 'D:\ccache.zip')
