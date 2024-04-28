@@ -21,7 +21,7 @@ jobs:
 
         #$ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
         
-        $ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest -Headers @{"Authorization"="token ${{ secrets.GITHUB_TOKEN }}"}) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
+        $ccache_num = (Invoke-RestMethod https://api.github.com/repos/ccache/ccache/releases/latest -Headers @{"Authorization"="token jkljlkjlkjlkjlkjg"}) | Select-String 'download.*ccache-(.*)-windows-x86_64' | %{$_.Matches.Groups[1].value}
         Write-Output $ccache_num
         Exit 1
         
