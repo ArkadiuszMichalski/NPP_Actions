@@ -24,9 +24,6 @@ jobs:
         $result = (Invoke-WebRequest -Method HEAD https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip).headers.'Content-MD5'
         (Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip)
 
-        Write-Output "${{ hashFiles('README.md') }}"
-        echo "===1"
-
         cd D:\
         Write-Output (pwd)
         Write-Output (dir)
@@ -34,6 +31,7 @@ jobs:
         Write-Output ($result)
         echo "===1"
         Write-Output "${{ hashFiles('D:\ccache.zip') }}"
+        Write-Output "${{ hashFiles('ccache.zip') }}"
         echo "===1"
         Exit 1
         
