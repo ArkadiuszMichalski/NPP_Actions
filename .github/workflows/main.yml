@@ -29,7 +29,7 @@ jobs:
         Write-Output (dir)
         
         Write-Output ($result)
-        Write-Output ([System.Convert]::FromBase64String($result))
+        Write-Output ([System.Convert]::FromBase64String($result) | Format-Hex)
         Write-Output (([System.Convert]::FromBase64String($result) | Format-Hex).HexBytes -replace ' ','')
         echo "===1"
         Write-Output (Get-FileHash D:\ccache.zip -Algorithm MD5).Hash
