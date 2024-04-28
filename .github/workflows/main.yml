@@ -30,8 +30,7 @@ jobs:
         
         Write-Output ($result)
         echo "===1"
-        Write-Output "${{ hashFiles('D:\ccache.zip') }}"
-        Write-Output "${{ hashFiles('cmds.txt') }}"
+        Write-Output (Get-FileHash D:\ccache.zip -Algorithm MD5).Hash
         echo "===1"
         Exit 1
         
