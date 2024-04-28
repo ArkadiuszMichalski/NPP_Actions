@@ -27,7 +27,7 @@ jobs:
         echo "===1"
         Write-Output ($result.headers)
         echo "===1"
-        Write-Output ($result.headers.Content-MD5)
+        #Write-Output ($result.headers.Content-MD5)
         echo "===1"
         Exit 1
         
