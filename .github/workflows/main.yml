@@ -19,7 +19,7 @@ jobs:
       run: |
 
         Write-Output "result=OK" >> $env:GITHUB_OUTPUT
-        #Write-Output ("${{ steps.pwd.outputs.result }}")
+        Write-Output ("${{ steps.pwd.outputs.result }}")
         Write-Output ($env:GITHUB_OUTPUT)
         Exit 1
 
