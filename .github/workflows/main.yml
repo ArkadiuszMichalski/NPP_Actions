@@ -15,7 +15,14 @@ jobs:
     steps: 
 
     - name: PWD
+      id: pwd
       run: |
+
+        Write-Output "result=OK" >> $env:GITHUB_OUTPUT
+        Write-Output (steps.pwd.outputs.result)
+        Write-Output ($env:GITHUB_OUTPUT)
+        Exit 1
+
 
         Write-Output ($Env:NUMBER_OF_PROCESSORS)
 
