@@ -17,10 +17,6 @@ jobs:
     - name: PWD
       run: |
 
-        Write (git log -1 --no-merges --pretty=%B)
-
-        Write (git show -s --no-merges --format=%B)
-
         Write-Output ($Env:NUMBER_OF_PROCESSORS)
 
         #$result = (Invoke-WebRequest https://github.com/ccache/ccache/releases/download/v4.9.1/ccache-4.9.1-windows-x86_64.zip -OutFile D:\ccache.zip)
@@ -37,7 +33,7 @@ jobs:
         echo "===1"
         Write-Output (Get-FileHash D:\ccache.zip -Algorithm MD5).Hash
         echo "===1"
-        Exit 1
+        #Exit 1
         
 
 
@@ -59,7 +55,7 @@ jobs:
         #Write-Output (dir)
         #Write-Output (7z l 'D:\ccache.zip')
         
-        Exit 1
+        #Exit 1
 
 
         #Write-Output (pip index versions requests)
@@ -90,6 +86,13 @@ jobs:
     
     - name: Python test
       run: |
+        Write (git log -1 --no-merges --pretty=%B)
+
+        Write (git show -s --no-merges --format=%B)
+
+        Exit 1
+
+      
         #$commit_message = (git show -s --format=%B)  
         #echo $commit_message
 
