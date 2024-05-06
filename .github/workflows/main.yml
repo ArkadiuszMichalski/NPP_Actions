@@ -3,6 +3,7 @@ name: CI_build
 on: [push, pull_request]
 env:
   PYTHON_ALLOW_CACHE: false
+  title: ${{ github.event.head_commit.message }}
 
 jobs:
   
@@ -17,6 +18,7 @@ jobs:
     - name: PWD
       run: |
 
+        Write-Output $Env:title
         Write-Output $Env:CC
         Write-Output $Env:CXX
         Write-Output ($Env:NUMBER_OF_PROCESSORS)
