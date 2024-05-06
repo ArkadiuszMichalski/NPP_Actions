@@ -17,8 +17,8 @@ jobs:
     - name: PWD
       run: |
 
-        Write-Output ($CC)
-        Write-Output (where.exe $CC)
+        Write-Output $Env:CC
+        Write-Output $Env:CXX
         Write-Output ($Env:NUMBER_OF_PROCESSORS)
         Exit 1
 
